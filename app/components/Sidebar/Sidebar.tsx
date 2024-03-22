@@ -1,5 +1,24 @@
 import Image from 'next/image'
-import { IoMedalOutline } from 'react-icons/io5'
+import { IoMedalOutline, IoPeopleOutline } from 'react-icons/io5'
+import { SidebarItem } from '..';
+
+
+
+const menuItems = [
+    {
+        path: '/dashboard/panel',
+        icon: <IoMedalOutline size={40} />,
+        title: 'Panel',
+        subtitle: 'Información general'
+    },
+    {
+        path: '/dashboard/citas',
+        icon: <IoPeopleOutline size={40}/>,
+        title: 'Citas',
+        subtitle: 'Gestionar citas'
+    },
+];
+
 
 export const Sidebar = () => {
   return (
@@ -42,25 +61,11 @@ export const Sidebar = () => {
       <div id="nav" className="w-full px-6">
 
 
-
-
-
-        <a href="#" className="w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3 hover:bg-white/5 transition ease-linear duration-150">
-          <div>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/>
-            </svg>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-lg text-slate-300 font-bold leading-5">
-              Citas
-            </span>
-            <span className="text-sm text-slate-500 hidden md:block">
-              Gestioanr citas
-            </span>
-          </div>
-        </a>
-
+        {
+            menuItems.map((item) => (
+                <SidebarItem key={item.path} {...item} />
+            ))
+        }
 
       </div>
     </div>

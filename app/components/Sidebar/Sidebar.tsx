@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { IoMedalOutline, IoPeopleOutline } from 'react-icons/io5'
+import { IoMedalOutline, IoPeopleOutline, IoStatsChartOutline } from 'react-icons/io5'
 import { SidebarItem } from '..';
 
 
@@ -7,13 +7,13 @@ import { SidebarItem } from '..';
 const menuItems = [
     {
         path: '/dashboard/panel',
-        icon: <IoMedalOutline size={40} />,
+        icon: <IoStatsChartOutline size={30} />,
         title: 'Panel',
         subtitle: 'Información general'
     },
     {
         path: '/dashboard/citas',
-        icon: <IoPeopleOutline size={40}/>,
+        icon: <IoPeopleOutline size={30}/>,
         title: 'Citas',
         subtitle: 'Gestionar citas'
     },
@@ -22,7 +22,7 @@ const menuItems = [
 
 export const Sidebar = () => {
   return (
-    <div id="menu" style={{ width: '400px' }}  className="bg-gray-900 min-h-screen z-10 text-slate-300 w-64 left-0 h-screen overflow-y-scroll">
+    <div id="menu" style={{width: '370px'}} className="bg-gray-900 min-h-screen z-10 text-slate-300 w-64 left-0 h-screen overflow-y-scroll">
 
 
       <div id="logo" className="my-4 px-6">

@@ -31,7 +31,7 @@ export const Sidebar = () => {
           <IoMedalOutline className='mr-2'/>
 
           <span>Dash</span>
-          <span className="text-blue-500">8</span>.
+          <span className="text-blue-500">1</span>.
         </h1>
         <p className="text-slate-500 text-sm">
           Sistema Administrativo de Psicologia

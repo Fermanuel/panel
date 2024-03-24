@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { IoMedalOutline, IoPeopleOutline, IoStatsChartOutline } from 'react-icons/io5'
-import { SidebarItem } from '..';
+import { SidebarItem } from '../..';
 
 
 

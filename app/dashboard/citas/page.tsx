@@ -1,10 +1,8 @@
-
-
-
-export default function citasPage() {
+export default function citasPage(){
+  
+  
   return (
-    <div>
-      <h1>Citas</h1>
+    <div className="container items-center justify-center p-5">
     </div>
   );
 }

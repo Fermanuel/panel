@@ -20,7 +20,7 @@ export const Calendario = () => {
     agenda: 'Agenda',
     date: 'Fecha',
     time: 'Hora',
-    event: 'Evento', // Personaliza otros mensajes según sea necesario
+    event: 'Evento'
   };
 
 
@@ -47,7 +47,6 @@ export const Calendario = () => {
     localizer={localizer}
     events={events}
     messages={mensajes}
-    
   />
   );
 }

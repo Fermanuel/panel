@@ -11,8 +11,10 @@
   "dependencies": {
     "@headlessui/react": "^1.7.18",
     "@tremor/react": "^3.14.1",
-    "next": "14.1.4",
+    "dayjs": "^1.11.10",
+    "next": "13.4.8",
     "react": "^18",
+    "react-big-calendar": "^1.11.2",
     "react-dom": "^18",
     "react-icons": "^5.0.1"
   },
@@ -20,6 +22,7 @@
     "@tailwindcss/forms": "^0.5.7",
     "@types/node": "^20",
     "@types/react": "^18",
+    "@types/react-big-calendar": "^1.8.9",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",

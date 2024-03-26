@@ -1,32 +1,5 @@
 export const Login = () => {
   
-  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const email = event.currentTarget.email.value;
-    const password = event.currentTarget.password.value;
-
-    // Send the login data to your backend for validation
-    // You can use fetch or any other HTTP library to make the request
-
-    // Example using fetch:
-    fetch('/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Handle the response from the backend
-        // You can show a success message or redirect the user to another page
-      })
-      .catch((error) => {
-        // Handle any errors that occurred during the request
-      });
-  };
-  
-  
   return (
     <div>
       <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg px-8 py-6 max-w-md">

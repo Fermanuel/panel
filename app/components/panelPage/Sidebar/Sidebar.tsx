@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { IoMedalOutline, IoPeopleOutline, IoStatsChartOutline } from 'react-icons/io5'
-import { SidebarItem } from '..';
+import { SidebarItem } from '../..';
 
 
 
@@ -22,7 +22,7 @@ const menuItems = [
 
 export const Sidebar = () => {
   return (
-    <div id="menu" style={{width: '370px'}} className="bg-gray-900 min-h-screen z-10 text-slate-300 w-64 left-0 h-screen overflow-y-scroll">
+    <div id="menu" style={{width: '300px'}} className="fixed bg-gray-900 min-h-screen z-10 text-slate-300 w-64 left-0 h-screen overflow-y-scroll">
 
 
       <div id="logo" className="my-4 px-6">

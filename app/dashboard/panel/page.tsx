@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { Card } from "@tremor/react";
 import { AreaChartHero } from "@/app/components";

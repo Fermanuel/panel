@@ -1,6 +1,6 @@
-export { CardHero } from './Card/Card';
-export { Login } from './Login/Login';
-export { Sidebar } from './Sidebar/Sidebar';
-export { SidebarItem } from './SidebarItem/SidebarItem';
-export { AreaChartHero } from './ChartArea/ChartArea';
-export { BarChartHero } from './BarChart/BarChart';
+export { Login } from './loginPage/Login/Login';
+export { Sidebar } from './panelPage/Sidebar/Sidebar';
+export { SidebarItem } from './panelPage/SidebarItem/SidebarItem';
+export { AreaChartHero } from './panelPage/ChartArea/ChartArea';
+export { BarChartHero } from './panelPage/BarChart/BarChart';
+export { Calendario } from './citasPage/Calendario/Calendario';

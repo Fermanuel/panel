@@ -1,3 +1,5 @@
+'use client';
+
 import { Sidebar } from "../components";
 
 export default function DashboardLayout({children,}: {children: React.ReactNode;}) {
@@ -9,7 +11,7 @@ export default function DashboardLayout({children,}: {children: React.ReactNode;
         
         <Sidebar/>
         
-        <div className="p-2 w-full text-slate-900">
+        <div className="p-2 w-full text-slate-900 ml-72">
           {children}
         </div>
       

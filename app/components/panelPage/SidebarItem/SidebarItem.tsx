@@ -24,7 +24,7 @@ export const SidebarItem = ({ path, icon, title, subtitle }: Props) => {
           `}
     >
       <div>
-        <div className="">{icon}</div>
+        <div>{icon}</div>
       </div>
       <div className="flex flex-col">
         <span className="text-lg font-bold leading-5 text-white">{title}</span>

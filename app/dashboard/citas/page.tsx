@@ -2,6 +2,7 @@
 
 import { Card } from "@tremor/react";
 import { Calendario } from "@/app/components";
+import { Button } from "@tremor/react";
 
 export default function citasPage(){  
   return (
@@ -10,6 +11,9 @@ export default function citasPage(){
         <Card className="w-screen h-screen">
           <Calendario/>
         </Card>
+      </div>
+      <div className="col-span-5 row-span-1 flex items-end justify-end">
+        <Button>Crear nueva cita</Button>
       </div>
     </div>
   );

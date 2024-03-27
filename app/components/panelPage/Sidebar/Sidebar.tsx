@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { IoMedalOutline, IoPeopleOutline, IoStatsChartOutline } from 'react-icons/io5'
+import { IoMedalOutline, IoPeopleOutline, IoStatsChartOutline, IoPersonOutline } from 'react-icons/io5'
 import { SidebarItem } from '../..';
 
 
@@ -17,6 +17,12 @@ const menuItems = [
         title: 'Citas',
         subtitle: 'Gestionar citas'
     },
+    {
+      path: '/dashboard/pacientes',
+      icon: <IoPersonOutline size={30}/>,
+      title: 'Pacientes',
+      subtitle: 'Gestionar pacientes'
+  }
 ];
 
 

@@ -7,27 +7,27 @@ function classNames(...classes : any[]) {
 
 const data = [
   {
-    name: 'Daily active users',
-    stat: '3,450',
+    name: 'Citas agendadas',
+    stat: '7',
     change: '+12.1%',
     changeType: 'positive',
   },
   {
-    name: 'Weekly sessions',
-    stat: '1,342',
-    change: '-9.8%',
+    name: 'Citas canceladas',
+    stat: '2',
+    change: '-3.1%',
     changeType: 'negative',
   },
   {
-    name: 'Duration',
-    stat: '5.2min',
+    name: 'Pacientes atendidos',
+    stat: '5',
     change: '+7.7%',
     changeType: 'positive',
   },
   {
-    name: 'Duration',
-    stat: '5.2min',
-    change: '+7.7%',
+    name: 'Pacientes totales',
+    stat: '62',
+    change: '+2.7%',
     changeType: 'positive',
   },
 ];

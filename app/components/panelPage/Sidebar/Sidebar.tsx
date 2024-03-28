@@ -7,19 +7,19 @@ import { SidebarItem } from '../..';
 const menuItems = [
     {
         path: '/dashboard/panel',
-        icon: <IoStatsChartOutline size={30} />,
+        icon: <IoStatsChartOutline size={25} />,
         title: 'Panel',
         subtitle: 'Información general'
     },
     {
         path: '/dashboard/citas',
-        icon: <IoPeopleOutline size={30}/>,
+        icon: <IoPeopleOutline size={25}/>,
         title: 'Citas',
         subtitle: 'Gestionar citas'
     },
     {
       path: '/dashboard/pacientes',
-      icon: <IoPersonOutline size={30}/>,
+      icon: <IoPersonOutline size={25}/>,
       title: 'Pacientes',
       subtitle: 'Gestionar pacientes'
   }

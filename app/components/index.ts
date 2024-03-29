@@ -5,3 +5,4 @@ export { AreaChartHero } from './panelPage/ChartArea/ChartArea';
 export { BarChartHero } from './panelPage/BarChart/BarChart';
 export { Calendario } from './citasPage/Calendario/Calendario';
 export { PkiCard } from './panelPage/PkiCard/PkiCard';
+export { TextInputHero, TextInputWithIcon, TextInputUsageExample } from './pacientesPage/Search/Search';

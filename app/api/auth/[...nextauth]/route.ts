@@ -6,7 +6,7 @@ const handler = NextAuth({
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "email", type: "email", placeholder: "test@test.com" },
+        email: { label: "email", type: "email"},
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
@@ -22,6 +22,8 @@ const handler = NextAuth({
           }
         );
         const user = await res.json();
+        
+        console.log(user);
 
         if (user.error) throw user;
 

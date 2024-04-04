@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import { IoMedalOutline, IoPeopleOutline, IoStatsChartOutline, IoPersonOutline } from 'react-icons/io5'
 import { SidebarItem } from '../..';
-
+import { useSession } from "next-auth/react";
+import { ButtonAuth } from '../..';
 
 
 const menuItems = [
@@ -27,8 +28,11 @@ const menuItems = [
 
 
 export const Sidebar = () => {
+
+  const { data: session} = useSession();
+  
   return (
-    <div id="menu" style={{width: '300px'}} className="fixed bg-gray-900 min-h-screen z-10 text-slate-300 w-64 left-0 h-screen overflow-y-scroll">
+    <div id="menu" style={{width: '300px'}} className="flex flex-col fixed bg-gray-900 min-h-screen z-10 text-slate-300 w-64 left-0 h-screen overflow-y-scroll">
 
 
       <div id="logo" className="my-4 px-6">
@@ -58,13 +62,13 @@ export const Sidebar = () => {
             />
           </span>
           <span className="text-sm md:text-base font-bold">
-            Fernando Espinosa
+            {session?.user?.email}
           </span>
         </a>
       </div>
 
 
-      <div id="nav" className="w-full px-6">
+      <div id="nav" className="w-full px-6 flex-grow">
 
 
         {
@@ -74,6 +78,11 @@ export const Sidebar = () => {
         }
 
       </div>
+
+      <div id="auth" className="px-6 py-10 text-center">
+        <ButtonAuth />
+      </div>
+
     </div>
   );
 }

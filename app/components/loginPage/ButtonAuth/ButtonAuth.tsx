@@ -18,7 +18,7 @@ export const ButtonAuth = () => {
         {/* Signed in as {session.user?.email} <br /> */}
         <button
           onClick={() => signOut()}
-          className="btn btn-danger"
+          className="text-sm "
         >
           Cerrar Sesion
         </button>

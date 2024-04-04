@@ -13,6 +13,7 @@
     "@tremor/react": "^3.14.1",
     "dayjs": "^1.11.10",
     "next": "13.4.8",
+    "next-auth": "^4.24.7",
     "react": "^18",
     "react-big-calendar": "^1.11.2",
     "react-dom": "^18",

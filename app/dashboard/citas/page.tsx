@@ -4,7 +4,7 @@ import { Card } from "@tremor/react";
 import { Calendario } from "@/app/components";
 import { Button } from "@tremor/react";
 
-export default function citasPage(){  
+export default function citasPage(){
   return (
     <div className="container mx-auto px-5">
       <div className="grid-cols-4 gap-3 pt-3 flex items-center justify-center">

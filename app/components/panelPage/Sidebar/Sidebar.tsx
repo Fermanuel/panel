@@ -6,28 +6,29 @@ import Link from 'next/link';
 
 
 const menuItems = [
-    {
-        path: '/dashboard/panel',
-        icon: <IoStatsChartOutline size={25} />,
-        title: 'Panel',
-        subtitle: 'Información general'
-    },
-    {
-        path: '/dashboard/citas',
-        icon: <IoPeopleOutline size={25}/>,
-        title: 'Citas',
-        subtitle: 'Gestionar citas'
-    },
-    {
-      path: '/dashboard/pacientes',
-      icon: <IoPersonOutline size={25}/>,
-      title: 'Pacientes',
-      subtitle: 'Gestionar pacientes'
-  }
+  {
+    path: "/dashboard/panel",
+    icon: <IoStatsChartOutline size={25} />,
+    title: "Panel",
+    subtitle: "Información general",
+  },
+  {
+    path: "/dashboard/citas",
+    icon: <IoPeopleOutline size={25} />,
+    title: "Citas",
+    subtitle: "Gestionar citas",
+  },
+  {
+    path: "/dashboard/pacientes",
+    icon: <IoPersonOutline size={25} />,
+    title: "Pacientes",
+    subtitle: "Gestionar pacientes",
+  },
 ];
 
 
-export const Sidebar = () => {
+export  const Sidebar = async () => {
+  
   const { data: session } = useSession();
 
   return (
@@ -78,6 +79,7 @@ export const Sidebar = () => {
 
 
       <div id="auth" className="text-sm px-6 py-10 text-center">
+        
         {session?.user ? (
           <button onClick={() => signOut()} >
             Cerrar Sesion
@@ -85,6 +87,7 @@ export const Sidebar = () => {
         ) : (
           <Link href="/login"></Link>
         )}
+
       </div>
 
 

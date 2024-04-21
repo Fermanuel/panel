@@ -6,3 +6,4 @@ export { BarChartHero } from './panelPage/BarChart/BarChart';
 export { Calendario } from './citasPage/Calendario/Calendario';
 export { PkiCard } from './panelPage/PkiCard/PkiCard';
 export { TableUsageExample } from './pacientePage/paciente';
+export { ModalPaciente } from './pacientePage/Modal';

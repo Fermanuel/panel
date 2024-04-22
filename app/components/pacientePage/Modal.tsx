@@ -1,6 +1,7 @@
 // ModalPaciente.jsx
 
 import { Dialog, DialogPanel, Button, Divider, TextInput, Select, SelectItem, DatePicker } from '@tremor/react';
+import { IoRefreshOutline } from 'react-icons/io5';
 
 export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
     
@@ -101,7 +102,7 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     htmlFor="email"
                     className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
                   >
-                    Correo electrónico
+                    Correo electronico
                     <span className="text-red-500">*</span>
                   </label>
                   <TextInput
@@ -109,7 +110,40 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     id="email"
                     name="email"
                     autoComplete="email"
-                    placeholder="Correo electrónico"
+                    placeholder="Correo electronico"
+                    className="mt-2"
+                    required
+                  />
+                </div>
+
+                <div className="col-span-full">
+                  <label
+                    htmlFor="email"
+                    className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
+                  >
+                    Carrera
+                    <span className="text-red-500">*</span>
+                  </label>
+                  <Select className='mt-2' required>
+                    <SelectItem value="1">Ing. Sistemas Computacionales</SelectItem>
+                    <SelectItem value="2">Ing. Informatica</SelectItem>
+                    <SelectItem value="3">Ing. Industrial</SelectItem>
+                  </Select>
+                </div>
+
+                <div className="col-span-full">
+                  <label
+                    htmlFor="Telefono"
+                    className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
+                  >
+                    Telefono
+                  </label>
+                  <TextInput
+                    type="text"
+                    id="Telefono"
+                    name="Telefono"
+                    autoComplete="Telefono"
+                    placeholder="Telefono"
                     className="mt-2"
                     required
                   />
@@ -132,52 +166,100 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                   />
                 </div>
 
-                <div className="col-span-full sm:col-span-2">
+                <div className="col-span-full sm:col-span-3">
                   <label
-                    htmlFor="city"
+                    htmlFor="first-name"
                     className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
                   >
-                    City
+                    Genero
+                    <span className="text-red-500">*</span>
+                  </label>
+                  <Select className='mt-2' required>
+                    <SelectItem value="1">Masculino</SelectItem>
+                    <SelectItem value="2">Femenio</SelectItem>
+                  </Select>
+                </div>
+
+                <div className="col-span-full sm:col-span-3">
+                  <label
+                    htmlFor="first-name"
+                    className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
+                  >
+                    Estado Civil
+                    <span className="text-red-500">*</span>
+                  </label>
+                  <Select className='mt-2' required>
+                    <SelectItem value="1">Soltero</SelectItem>
+                    <SelectItem value="2">Casado</SelectItem>
+                    <SelectItem value="3">Union Libre</SelectItem>
+                  </Select>
+                </div>
+
+                <div className="col-span-full sm:col-span-3">
+                  <label
+                    htmlFor="first-name"
+                    className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
+                  >
+                    no. Control
+                    <span className="text-red-500">*</span>
                   </label>
                   <TextInput
                     type="text"
-                    id="city"
-                    name="city"
-                    autoComplete="address-level2"
-                    placeholder="City"
+                    id="noControl"
+                    name="noControl"
+                    autoComplete="noControl"
+                    placeholder="numero de control"
                     className="mt-2"
+                    required
                   />
                 </div>
 
-                <div className="col-span-full sm:col-span-2">
+                <div className="col-span-full sm:col-span-3">
                   <label
-                    htmlFor="state"
+                    htmlFor="first-name"
                     className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
                   >
-                    State
+                    no. Semestre
+                    <span className="text-red-500">*</span>
                   </label>
                   <TextInput
                     type="text"
-                    id="state"
-                    name="state"
-                    autoComplete="address-level1"
-                    placeholder="State"
+                    id="noSemestre"
+                    name="noSemestre"
+                    autoComplete="noSemestre"
+                    placeholder="numero de semestre"
                     className="mt-2"
+                    required
                   />
                 </div>
 
-                <div className="col-span-full sm:col-span-2">
+                <div className="col-span-full">
                   <label
-                    htmlFor="postal-code"
+                    htmlFor="email"
                     className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
                   >
-                    Postal code
+                    Plantel
+                    <span className="text-red-500">*</span>
+                  </label>
+                  <Select className='mt-2' required>
+                    <SelectItem value="1">Unidad Tomas Aquino</SelectItem>
+                    <SelectItem value="2">Unidad Otay</SelectItem>
+                  </Select>
+                </div>
+
+                <div className="col-span-full">
+                  <label
+                    htmlFor="address"
+                    className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
+                  >
+                    Correo Institucional
                   </label>
                   <TextInput
-                    id="postal-code"
-                    name="postal-code"
-                    autoComplete="postal-code"
-                    placeholder="Postal code"
+                    type="email"
+                    id="CorreoInstitucional"
+                    name="CorreoInstitucional"
+                    autoComplete="CorreoInstitucional"
+                    placeholder="Correo Institucional"
                     className="mt-2"
                   />
                 </div>
@@ -193,13 +275,17 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                   onClick={onClose}
                   variant='secondary'
                 >
-                  Cancel
+                  Cancelar
                 </Button>
+
                 <Button
                   type="submit"
                   className="whitespace-nowrap rounded-tremor-default bg-tremor-brand px-4 py-2.5 text-tremor-default font-medium text-tremor-brand-inverted shadow-tremor-input hover:bg-tremor-brand-emphasis dark:bg-dark-tremor-brand dark:text-dark-tremor-brand-inverted dark:shadow-dark-tremor-input dark:hover:bg-dark-tremor-brand-emphasis"
+                  icon={IoRefreshOutline}
+                  loading={false}
+                  loadingText='Guardando...'
                 >
-                  Submit
+                  Guardar
                 </Button>
               </div>
             </form>

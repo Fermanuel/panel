@@ -179,7 +179,7 @@ export function TableUsageExample() {
             <TableHeaderCell>Fecha Naciemiento</TableHeaderCell>
             <TableHeaderCell>Direccion</TableHeaderCell>
             <TableHeaderCell>Telefono</TableHeaderCell>
-            <TableHeaderCell>Correo 1</TableHeaderCell>
+            <TableHeaderCell>Correo Electronico</TableHeaderCell>
             <TableHeaderCell>Correo Institucional</TableHeaderCell>
             <TableHeaderCell>Genero</TableHeaderCell>
             <TableHeaderCell>Estado Civil</TableHeaderCell>

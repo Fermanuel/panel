@@ -69,6 +69,7 @@ const dataFormatter = (number: any) =>
 export function AreaChartHero() {
   return (
     <AreaChart
+      showAnimation={true}
       className="h-80"
       data={chartdata}
       index="date"

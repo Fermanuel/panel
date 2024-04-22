@@ -36,6 +36,7 @@ const dataFormatter = (number: number) =>
 
 export const BarChartHero = () => (
   <BarChart
+    showAnimation={true}
     data={chartdata}
     index="name"
     categories={['Number of threatened species']}

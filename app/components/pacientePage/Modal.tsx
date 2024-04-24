@@ -1,7 +1,6 @@
 // ModalPaciente.jsx
 
 import { Dialog, DialogPanel, Button, Divider, TextInput, Select, SelectItem, DatePicker } from '@tremor/react';
-import { IoRefreshOutline } from 'react-icons/io5';
 
 export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
     
@@ -281,7 +280,6 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                 <Button
                   type="submit"
                   className="whitespace-nowrap rounded-tremor-default bg-tremor-brand px-4 py-2.5 text-tremor-default font-medium text-tremor-brand-inverted shadow-tremor-input hover:bg-tremor-brand-emphasis dark:bg-dark-tremor-brand dark:text-dark-tremor-brand-inverted dark:shadow-dark-tremor-input dark:hover:bg-dark-tremor-brand-emphasis"
-                  icon={IoRefreshOutline}
                   loading={false}
                   loadingText='Guardando...'
                 >

@@ -48,7 +48,7 @@ const columns = [
       <>
         {row.nombre}
         <br />
-        <small className='text-tremor-label'>{row.correo1}</small>
+        <span className='text-tremor-label'>{row.correo1}</span>
       </>
     ),
     sortable: true,
@@ -63,7 +63,7 @@ const columns = [
       <>
         {row.carrera}
         <br />
-        <small className='text-tremor-label'>{row.plantel}</small>
+        <span className='text-tremor-label'>{row.plantel}</span>
       </>
     ),
     sortable: true,

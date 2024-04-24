@@ -1,6 +1,8 @@
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { IoLogoGoogle } from "react-icons/io5";
 import { signIn } from "next-auth/react";
+import { Card, Divider, TextInput } from "@tremor/react";
+import { useState } from "react";
 
 export const Login = () => {
   const [errors, setErrors] = useState<string[]>([]);
@@ -28,81 +30,88 @@ export const Login = () => {
 
   return (
     <div>
-      <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg px-8 py-6 max-w-md">
-        <h1 className="text-2xl font-bold text-center mb-4 dark:text-gray-200">
-          Iniciar Sesion
-        </h1>
+      <Card className="px-8 py-6 max-w-md">
+        <div className="flex min-h-full flex-1 flex-col justify-center px-4 py-10 lg:px-6">
 
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4"></div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-          >
-            Direccion de correo
-          </label>
-          <input
-            type="email"
-            id="email"
-            className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-            placeholder="Ingresa tu correo"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></input>
-          <div className="mb-4">
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 pt-5"
-            >
-              Contraseña
-            </label>
-            <input
-              type="password"
-              id="password"
-              className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              placeholder="Ingresa tu contraseña"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            ></input>
-            <a
-              href="#"
-              className="text-xs text-gray-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Forgot Password?
-            </a>
-          </div>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                id="remember"
-                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 focus:outline-none"
-              ></input>
-              <label
-                htmlFor="remember"
-                className="ml-2 block text-sm text-gray-700 dark:text-gray-300"
-              >
-                No cerrar sesion
-              </label>
+          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+
+            <div className="logoImagen">
+              <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmY1cjZ0cjAzY3Y4bzJmbnl2bXUwaTMybWRmNDE3eTg5ZDk1YWpqeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/LbUYCbgVZUkai24CaF/giphy.gif" alt="logo" className="w-20 h-50 mx-auto" />
             </div>
-            <a
-              href="#"
-              className="text-xs text-indigo-500 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Create Account
-            </a>
-          </div>
 
-          <button
-            type="submit"
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Iniciar Sesion
-          </button>
-        </form>
-      </div>
+            <h3 className="text-center text-tremor-title font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
+              Inicia Sesion
+            </h3>
+
+            <Divider/>
+
+            <form onSubmit={handleSubmit} method="post" className="mt-6">
+              <div>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
+                  >
+                    Correo electrónico
+                  </label>
+                  <TextInput
+                    type="email"
+                    id="email"
+                    name="email"
+                    autoComplete="email"
+                    placeholder="doctor@itt.com"
+                    className="mt-2"
+                    
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
+                  >
+                    Contraseña
+                  </label>
+
+                  <TextInput
+                    type="password"
+                    id="password"
+                    name="password"
+                    autoComplete="password"
+                    placeholder="Contraseña"
+                    className="mt-2"
+                    
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                className="mt-4 w-full whitespace-nowrap rounded-tremor-default bg-tremor-brand py-2 text-center text-tremor-default font-medium text-tremor-brand-inverted shadow-tremor-input hover:bg-tremor-brand-emphasis dark:bg-dark-tremor-brand dark:text-dark-tremor-brand-inverted dark:shadow-dark-tremor-input dark:hover:bg-dark-tremor-brand-emphasis"
+              >
+                Inicia Sesion
+              </button>
+            </form>
+            
+            <Divider/>
+
+            <p className="mt-4 text-tremor-label text-tremor-content dark:text-dark-tremor-content">
+              sistema administrativo{" "}
+              <a href="#" className="underline underline-offset-4">
+                derechos reservados
+              </a>{" "}
+              y{" "}
+              <a href="#" className="underline underline-offset-4">
+                politica de privacidad
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+      </Card>
 
       {errors.length > 0 && (
         <div className="fixed inset-x-0 bottom-14 z-50 mx-auto max-w-md">
@@ -122,7 +131,6 @@ export const Login = () => {
           </div>
         </div>
       )}
-
     </div>
   );
 };

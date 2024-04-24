@@ -3,26 +3,33 @@
 import { IoHappyOutline } from 'react-icons/io5';
 
 import DataTable from 'react-data-table-component';
-import { Card, Badge, Button } from '@tremor/react';
+import { Card, Badge } from '@tremor/react';
 
 
 //  Internally, customStyles will deep merges your customStyles with the default styling.
 const customStyles = {
-	rows: {
+	headRow: {
 		style: {
-			minHeight: '65px', // override the row height
+			border: 'none',
 		},
 	},
 	headCells: {
 		style: {
-			paddingLeft: '8px', // override the cell padding for head cells
-			paddingRight: '8px',
+			color: '#202124',
+			fontSize: '14px',
 		},
 	},
-	cells: {
+	rows: {
+		highlightOnHoverStyle: {
+			backgroundColor: 'rgb(230, 244, 244)',
+			borderBottomColor: '#FFFFFF',
+			borderRadius: '25px',
+			outline: '1px solid #FFFFFF',
+		},
+	},
+	pagination: {
 		style: {
-			paddingLeft: '8px', // override the cell padding for data cells
-			paddingRight: '8px',
+			border: 'none',
 		},
 	},
 };
@@ -31,65 +38,100 @@ const columns = [
   {
     name: 'No. Control',
     selector: (row: { noControl: string; }) => row.noControl,
-		reorder: true,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
   },
   {
     name: 'Nombre',
-    selector: (row: { nombre: string; }) => row.nombre,
+    selector: (row: {correo1: string; nombre: string; }) => (
+      <>
+        {row.nombre}
+        <br />
+        <small className='text-tremor-label'>{row.correo1}</small>
+      </>
+    ),
     sortable: true,
-		reorder: true,
-    grow: 2,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
+    width: "250px",
   },
   {
     name: 'Carrera',
-    selector: (row: { carrera: string; }) => row.carrera,
+    selector: (row: { carrera: string; plantel: string; }) => (
+      <>
+        {row.carrera}
+        <br />
+        <small className='text-tremor-label'>{row.plantel}</small>
+      </>
+    ),
+    sortable: true,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
+    width: "250px",
   },
   {
     name: 'Estatus',
-    selector: (row: { estatus: string; }) => row.estatus
+    
+    cell: (row: { estatus: string; }) => 
+    <Badge  size="xs" icon={IoHappyOutline}>  
+      {row.estatus}
+    </Badge>,
   },
   {
     name: 'Fecha de Nacimiento',
     selector: (row: { fechaNaciemiento: string; }) => row.fechaNaciemiento,
     sortable: true,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
   },
   {
     name: 'Dirección',
     selector: (row: { direccion: string; }) => row.direccion,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
   },
   {
     name: 'Telefono',
-    selector: (row: { telefono: string; }) => row.telefono
-  },
-  {
-    name: 'Correo Personal',
-    selector: (row: { correo1: string; }) => row.correo1,
-    reorder: true,
-    grow: 2,
+    selector: (row: { telefono: string; }) => row.telefono,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
+    width: "115px",
   },
   {
     name: 'Correo Institucional',
     selector: (row: { correoInstitucional: string; }) => row.correoInstitucional,
     reorder: true,
-    grow: 3,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
+    width: "180px",
   },
   {
     name: 'Genero',
-    selector: (row: { genero: string; }) => row.genero
+    selector: (row: { genero: string; }) => row.genero,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
   },
   {
     name: 'Estado Civil',
-    selector: (row: { estadoCivil: string; }) => row.estadoCivil
+    selector: (row: { estadoCivil: string; }) => row.estadoCivil,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
   },
   {
     name: 'Semestre',
-    selector: (row: { semestre: string; }) => row.semestre
-  },
-  {
-    name: 'Plantel',
-    selector: (row: { plantel: string; }) => row.plantel,
-    reorder: true,
-    grow: 2,
+    selector: (row: { semestre: string; }) => row.semestre,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
   }
 ];
 

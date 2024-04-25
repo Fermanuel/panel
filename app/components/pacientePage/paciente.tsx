@@ -1,8 +1,8 @@
 
 
-import { IoHappyOutline } from 'react-icons/io5';
+import { IoHappyOutline, IoReaderOutline } from 'react-icons/io5';
 
-import DataTable from 'react-data-table-component';
+import DataTable, { ExpanderComponentProps } from 'react-data-table-component';
 import { Card, Badge } from '@tremor/react';
 
 
@@ -33,107 +33,6 @@ const customStyles = {
 		},
 	},
 };
-
-const columns = [
-  {
-    name: 'No. Control',
-    selector: (row: { noControl: string; }) => row.noControl,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-  },
-  {
-    name: 'Nombre',
-    selector: (row: {correo1: string; nombre: string; }) => (
-      <>
-        {row.nombre}
-        <br />
-        <span className='text-tremor-label'>{row.correo1}</span>
-      </>
-    ),
-    sortable: true,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-    width: "250px",
-  },
-  {
-    name: 'Carrera',
-    selector: (row: { carrera: string; plantel: string; }) => (
-      <>
-        {row.carrera}
-        <br />
-        <span className='text-tremor-label'>{row.plantel}</span>
-      </>
-    ),
-    sortable: true,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-    width: "250px",
-  },
-  {
-    name: 'Estatus',
-    
-    cell: (row: { estatus: string; }) => 
-    <Badge  size="xs" icon={IoHappyOutline}>  
-      {row.estatus}
-    </Badge>,
-  },
-  {
-    name: 'Fecha de Nacimiento',
-    selector: (row: { fechaNaciemiento: string; }) => row.fechaNaciemiento,
-    sortable: true,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-  },
-  {
-    name: 'Dirección',
-    selector: (row: { direccion: string; }) => row.direccion,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-  },
-  {
-    name: 'Telefono',
-    selector: (row: { telefono: string; }) => row.telefono,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-    width: "115px",
-  },
-  {
-    name: 'Correo Institucional',
-    selector: (row: { correoInstitucional: string; }) => row.correoInstitucional,
-    reorder: true,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-    width: "180px",
-  },
-  {
-    name: 'Genero',
-    selector: (row: { genero: string; }) => row.genero,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-  },
-  {
-    name: 'Estado Civil',
-    selector: (row: { estadoCivil: string; }) => row.estadoCivil,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-  },
-  {
-    name: 'Semestre',
-    selector: (row: { semestre: string; }) => row.semestre,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-  }
-];
 
 const dataItems = [
   {
@@ -438,6 +337,159 @@ const dataItems = [
   }
 ];
 
+const columns = [
+  {
+    name: 'No. Control',
+    selector: (row: {noControl: string}) => row.noControl,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
+  },
+  {
+    name: 'Nombre',
+    selector: (row: {correo1: string; nombre: string; }) => (
+      <>
+        {row.nombre}
+        <br />
+        <span className='text-tremor-label'>
+          {row.correo1}
+        </span>
+      </>
+    ),
+    sortable: true,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
+    width: "250px",
+  },
+  {
+    // TODO: agregaar a la columna expandible
+
+    name: 'Carrera',
+    selector: (row: { carrera: string; plantel: string; }) => (
+      <>
+        {row.carrera}
+        <br />
+        <span className='text-tremor-label'>
+          {row.plantel}
+          </span>
+      </>
+    ),
+    sortable: true,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
+    width: "250px",
+  },
+  {
+    name: 'Estatus',
+    
+    cell: (row: { estatus: string; }) => 
+    <Badge  size="xs" icon={IoHappyOutline}>  
+      {row.estatus}
+    </Badge>,
+  },
+  {
+    name: 'Fecha de Nacimiento',
+    selector: (row: { fechaNaciemiento: string; }) => row.fechaNaciemiento,
+    sortable: true,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
+  },
+  {
+    // TODO: agregaar a la columna expandible
+
+    name: 'Dirección',
+    selector: (row: { direccion: string; }) => row.direccion,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
+  },
+  {
+    name: 'Telefono',
+    selector: (row: { telefono: string; }) => row.telefono,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
+    width: "115px",
+  },
+  {
+    // TODO: agregaar a la columna expandible
+
+    name: 'Correo Institucional',
+    selector: (row: { correoInstitucional: string; }) => row.correoInstitucional,
+    reorder: true,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
+    width: "180px",
+  },
+  {
+    name: 'Genero',
+    selector: (row: { genero: string; }) => row.genero,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
+  },
+  {
+    // TODO: agregaar a la columna expandible
+
+    name: 'Estado Civil',
+    selector: (row: { estadoCivil: string; }) => row.estadoCivil,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
+  },
+  {
+    // TODO: agregaar a la columna expandible
+
+    name: 'Semestre',
+    selector: (row: { semestre: string; }) => row.semestre,
+    style: {
+			color: 'rgba(0,0,0,.54)',
+		},
+  }
+];
+
+const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
+  return (
+    <div className='ml-4 bg-gray-100 p-4 rounded-lg'>
+
+      <div className='flex items-center text-tremor-default mb-4'>
+        <IoReaderOutline className='text-tremor-default mr-2' />
+        <span className='font-bold'>Información adicional</span>
+      </div>
+
+      <div className='text-tremor-default'>
+        <span className='font-bold'>Dirección:</span> {data.direccion}
+      </div>
+
+      <div className='text-tremor-default'>
+        <span className='font-bold'>Teléfono:</span> {data.telefono}
+      </div>
+
+      <div className='text-tremor-default'>
+        <span className='font-bold'>Correo Institucional:</span> {data.correoInstitucional}
+      </div>
+
+      <div className='text-tremor-default'>
+        <span className='font-bold'>Género:</span> {data.genero}
+      </div>
+      
+      <div className='text-tremor-default'>
+        <span className='font-bold'>Estado Civil:</span> {data.estadoCivil}
+      </div>
+
+      <div className='text-tremor-default'>
+        <span className='font-bold'>Semestre:</span> {data.semestre}
+      </div>
+      
+    </div>
+
+  );
+};
+
 
 export function TableUsageExample() {
   return (
@@ -448,12 +500,12 @@ export function TableUsageExample() {
         customStyles={customStyles}
         fixedHeader={true}
         
-        columns={columns as any}
-        data={dataItems}
-        selectableRows={true}
+        columns = {columns as any}
+        data = { dataItems }
+        selectableRows = { true }
 
-        pagination={true}
-        paginationPerPage={10}
+        pagination = { true }
+        paginationPerPage = { 10 }
         paginationComponentOptions={
           {
             rowsPerPageText: 'Filas por página',
@@ -464,8 +516,13 @@ export function TableUsageExample() {
         }
         onSelectedRowsChange={data => console.log(data)}
 
-        highlightOnHover={true}
-        pointerOnHover={true}
+        highlightOnHover = { true }
+        pointerOnHover={ true }
+
+        expandableRows = { true }
+        expandableRowsComponent = { ExpandedComponent }
+        expandableRowsHideExpander = {true}
+        expandOnRowClicked = { true }
       />
     </Card>
   )

@@ -3,7 +3,9 @@
 import { IoHappyOutline, IoReaderOutline } from 'react-icons/io5';
 
 import DataTable, { ExpanderComponentProps } from 'react-data-table-component';
-import { Card, Badge } from '@tremor/react';
+import { Card, Badge, List, ListItem  } from '@tremor/react';
+
+import { useEffect, useState } from 'react';
 
 
 //  Internally, customStyles will deep merges your customStyles with the default styling.
@@ -42,7 +44,7 @@ const dataItems = [
     estatus: "active",
     fechaNaciemiento: "1998-09-01",
     direccion: "Calle 1 #123",
-    telefono: "1234567890",
+    telefono: "6646758501",
     correo1: "manuelhola9@gmail.com",
     correoInstitucional: "l21210371@tectijuana.edu.mx",
     genero: "Masculino",
@@ -398,15 +400,6 @@ const columns = [
 		},
   },
   {
-    // TODO: agregaar a la columna expandible
-
-    name: 'Dirección',
-    selector: (row: { direccion: string; }) => row.direccion,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-  },
-  {
     name: 'Telefono',
     selector: (row: { telefono: string; }) => row.telefono,
     style: {
@@ -415,78 +408,72 @@ const columns = [
     width: "115px",
   },
   {
-    // TODO: agregaar a la columna expandible
-
-    name: 'Correo Institucional',
-    selector: (row: { correoInstitucional: string; }) => row.correoInstitucional,
-    reorder: true,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-    width: "180px",
-  },
-  {
     name: 'Genero',
     selector: (row: { genero: string; }) => row.genero,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-  },
-  {
-    // TODO: agregaar a la columna expandible
-
-    name: 'Estado Civil',
-    selector: (row: { estadoCivil: string; }) => row.estadoCivil,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-  },
-  {
-    // TODO: agregaar a la columna expandible
-
-    name: 'Semestre',
-    selector: (row: { semestre: string; }) => row.semestre,
     style: {
 			color: 'rgba(0,0,0,.54)',
 		},
   }
 ];
 
+
+// ! agregar el compoenente Lista a la columna expandible
+
 const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
+
+  // Define el estado para almacenar el número de teléfono
+  const [telefono, setTelefono] = useState('');
+
+  // Efecto para establecer el href del enlace una vez que se monta el componente
+  useEffect(() => {
+
+    // Establece el número de teléfono en el estado
+    setTelefono(data.telefono);
+
+    // Cambia el href del enlace
+    const whatsappLink = document.getElementById("whatsappLink") as HTMLAnchorElement;
+    
+    if (whatsappLink) {
+      whatsappLink.href = `https://api.whatsapp.com/send?phone=521${data.telefono}`;
+    }
+  }, []);
+
   return (
-    <div className='ml-4 bg-gray-100 p-4 rounded-lg'>
+    
+    <div className="ml-4 p-4">
 
-      <div className='flex items-center text-tremor-default mb-4'>
-        <IoReaderOutline className='text-tremor-default mr-2' />
-        <span className='font-bold'>Información adicional</span>
-      </div>
+      <Card decoration="top" decorationColor="indigo" className='max-w-md'>
 
-      <div className='text-tremor-default'>
-        <span className='font-bold'>Dirección:</span> {data.direccion}
-      </div>
+        <List>
+          <ListItem>
+            <span>Dirección:</span>
+            <span>{data.direccion}</span>
+          </ListItem>
+          <ListItem>
+            <span>Teléfono:</span>
+            <a id="whatsappLink" href="#" target="_blank" className='text-blue-500 hover:underline hover:text-blue-700 transition duration-300'><span>{data.telefono}</span></a>
+          </ListItem>
+          <ListItem>
+            <span>Correo Institucional:</span>
+            <span>{data.correoInstitucional}</span>
+          </ListItem>
+          <ListItem>
+            <span>Género:</span>
+            <span>{data.genero}</span>
+          </ListItem>
+          <ListItem>
+            <span>Estado Civil:</span>
+            <span>{data.estadoCivil}</span>
+          </ListItem>
+          <ListItem>
+            <span>Semestre:</span>
+            <span>{data.semestre}</span>
+          </ListItem>
+        </List>
+      </Card>
 
-      <div className='text-tremor-default'>
-        <span className='font-bold'>Teléfono:</span> {data.telefono}
-      </div>
-
-      <div className='text-tremor-default'>
-        <span className='font-bold'>Correo Institucional:</span> {data.correoInstitucional}
-      </div>
-
-      <div className='text-tremor-default'>
-        <span className='font-bold'>Género:</span> {data.genero}
-      </div>
-      
-      <div className='text-tremor-default'>
-        <span className='font-bold'>Estado Civil:</span> {data.estadoCivil}
-      </div>
-
-      <div className='text-tremor-default'>
-        <span className='font-bold'>Semestre:</span> {data.semestre}
-      </div>
-      
     </div>
-
+    
   );
 };
 

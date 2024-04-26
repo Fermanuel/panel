@@ -1,9 +1,9 @@
 
 
-import { IoHappyOutline, IoReaderOutline } from 'react-icons/io5';
+import { IoHappyOutline, IoSearchOutline } from 'react-icons/io5';
 
 import DataTable, { ExpanderComponentProps } from 'react-data-table-component';
-import { Card, Badge, List, ListItem  } from '@tremor/react';
+import { Card, Badge, List, ListItem, TextInput } from '@tremor/react';
 
 import { useEffect, useState } from 'react';
 
@@ -416,15 +416,12 @@ const columns = [
   }
 ];
 
-
-// ! agregar el compoenente Lista a la columna expandible
-
 const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
 
-  // Define el estado para almacenar el número de teléfono
+
+  // Estado para el número de teléfono de cada paciente
   const [telefono, setTelefono] = useState('');
 
-  // Efecto para establecer el href del enlace una vez que se monta el componente
   useEffect(() => {
 
     // Establece el número de teléfono en el estado
@@ -439,11 +436,9 @@ const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
   }, []);
 
   return (
-    
     <div className="ml-4 p-4">
 
-      <Card decoration="top" decorationColor="indigo" className='max-w-md'>
-
+      <Card decoration="top" decorationColor="indigo" className="max-w-md">
         <List>
           <ListItem>
             <span>Dirección:</span>
@@ -451,7 +446,14 @@ const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
           </ListItem>
           <ListItem>
             <span>Teléfono:</span>
-            <a id="whatsappLink" href="#" target="_blank" className='text-blue-500 hover:underline hover:text-blue-700 transition duration-300'><span>{data.telefono}</span></a>
+            <a
+              id="whatsappLink"
+              href="#"
+              target="_blank"
+              className="text-blue-500 hover:underline hover:text-blue-700 transition duration-300"
+            >
+              <span>{data.telefono}</span>
+            </a>
           </ListItem>
           <ListItem>
             <span>Correo Institucional:</span>
@@ -471,46 +473,68 @@ const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
           </ListItem>
         </List>
       </Card>
-
     </div>
-    
   );
 };
 
 
 export function TableUsageExample() {
+
+  // Filtrado de pacientes
+  const [records, setRecords] = useState(dataItems);
+
+  const handleSearch = (e: any) => {
+    const value = e.target.value.toLowerCase();
+    const filteredData = dataItems.filter((item) => {
+      return (
+        item.noControl.toLowerCase().includes(value) ||
+        item.nombre.toLowerCase().includes(value) ||
+        item.carrera.toLowerCase().includes(value) ||
+        item.estatus.toLowerCase().includes(value) ||
+        item.fechaNaciemiento.toLowerCase().includes(value) ||
+        item.telefono.toLowerCase().includes(value) ||
+        item.genero.toLowerCase().includes(value)
+      );
+    });
+    setRecords(filteredData);
+  };
+
   return (
-    <Card className='text-tremor-default'>
+    <Card className="text-tremor-default">
+      
+      <div className="grid grid-cols-4 gap-3 pt-3">
+        <div className="w-full">
+          <TextInput
+            icon={IoSearchOutline}
+            placeholder="Buscar paciente"
+            onChange={handleSearch}
+          />
+        </div>
+      </div>
+
       <DataTable
-        
         title="Pacientes registrados"
         customStyles={customStyles}
         fixedHeader={true}
-        
-        columns = {columns as any}
-        data = { dataItems }
-        selectableRows = { true }
-
-        pagination = { true }
-        paginationPerPage = { 10 }
-        paginationComponentOptions={
-          {
-            rowsPerPageText: 'Filas por página',
-            rangeSeparatorText: 'de',
-            selectAllRowsItem: true,
-            selectAllRowsItemText: 'Todos',
-          }
-        }
-        onSelectedRowsChange={data => console.log(data)}
-
-        highlightOnHover = { true }
-        pointerOnHover={ true }
-
-        expandableRows = { true }
-        expandableRowsComponent = { ExpandedComponent }
-        expandableRowsHideExpander = {true}
-        expandOnRowClicked = { true }
+        columns={columns as any}
+        data={records}
+        selectableRows={true}
+        pagination={true}
+        paginationPerPage={10}
+        paginationComponentOptions={{
+          rowsPerPageText: "Filas por página",
+          rangeSeparatorText: "de",
+          selectAllRowsItem: true,
+          selectAllRowsItemText: "Todos",
+        }}
+        onSelectedRowsChange={(data) => console.log(data)}
+        highlightOnHover={true}
+        pointerOnHover={true}
+        expandableRows={true}
+        expandableRowsComponent={ExpandedComponent}
+        expandableRowsHideExpander={true}
+        expandOnRowClicked={true}
       />
     </Card>
-  )
+  );
 }

@@ -19,28 +19,13 @@ export default function pacientesPage() {
     const closeModal = () => {
         setIsModalOpen(false);
     };
+
     
     return (
         <div className="container mx-auto px-5">
 
-            <div className='grid grid-cols-4 gap-3 pt-3'>
-                <div className="w-full">
-                    <TextInput
-                        icon={IoSearchOutline}
-                        placeholder="Buscar paciente"
-                    />
-                </div>
-                <div className="min-w-12">
-                    <Button
-                        size='sm'
-                    >
-                        Buscar
-                    </Button>
-                </div>
-            </div>
-
             <div className='pt-3'>
-                <TableUsageExample />
+                <TableUsageExample/>
             </div>
 
             <div className='pt-3 flex justify-end'>

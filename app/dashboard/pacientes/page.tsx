@@ -1,8 +1,7 @@
 'use client';
 
 import { TableUsageExample } from '../../components/index'
-import { TextInput, Button } from '@tremor/react';
-import { IoSearchOutline } from 'react-icons/io5';
+import { Button } from '@tremor/react';
 
 import { ModalPaciente } from '../../components/index';
 import { useState } from 'react';

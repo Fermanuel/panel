@@ -1,11 +1,12 @@
 
 
-import { IoHappyOutline, IoSearchOutline } from 'react-icons/io5';
+import { IoHappyOutline, IoSearchOutline, IoTrashOutline, IoCreateOutline } from 'react-icons/io5';
 
 import DataTable, { ExpanderComponentProps } from 'react-data-table-component';
-import { Card, Badge, List, ListItem, TextInput } from '@tremor/react';
+import { Card, Badge, List, ListItem, TextInput, Button } from '@tremor/react';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo, useCallback, SetStateAction } from 'react';
+import colors from 'tailwindcss/colors';
 
 
 //  Internally, customStyles will deep merges your customStyles with the default styling.
@@ -339,82 +340,6 @@ const dataItems = [
   }
 ];
 
-const columns = [
-  {
-    name: 'No. Control',
-    selector: (row: {noControl: string}) => row.noControl,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-  },
-  {
-    name: 'Nombre',
-    selector: (row: {correo1: string; nombre: string; }) => (
-      <>
-        {row.nombre}
-        <br />
-        <span className='text-tremor-label'>
-          {row.correo1}
-        </span>
-      </>
-    ),
-    sortable: true,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-    width: "250px",
-  },
-  {
-    // TODO: agregaar a la columna expandible
-
-    name: 'Carrera',
-    selector: (row: { carrera: string; plantel: string; }) => (
-      <>
-        {row.carrera}
-        <br />
-        <span className='text-tremor-label'>
-          {row.plantel}
-          </span>
-      </>
-    ),
-    sortable: true,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-    width: "250px",
-  },
-  {
-    name: 'Estatus',
-    
-    cell: (row: { estatus: string; }) => 
-    <Badge  size="xs" icon={IoHappyOutline}>  
-      {row.estatus}
-    </Badge>,
-  },
-  {
-    name: 'Fecha de Nacimiento',
-    selector: (row: { fechaNaciemiento: string; }) => row.fechaNaciemiento,
-    sortable: true,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-  },
-  {
-    name: 'Telefono',
-    selector: (row: { telefono: string; }) => row.telefono,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-    width: "115px",
-  },
-  {
-    name: 'Genero',
-    selector: (row: { genero: string; }) => row.genero,
-    style: {
-			color: 'rgba(0,0,0,.54)',
-		},
-  }
-];
 
 const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
 
@@ -478,7 +403,113 @@ const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
 };
 
 
+
 export function TableUsageExample() {
+
+  // ! COLUMNA DE LA TABLA "NO MODIFICAR" SOLO SI ES 100% NECESARIO
+
+  const [selectedRows, setSelectedRows] = useState([]);
+
+  useEffect(() => {
+    
+    console.log('state', selectedRows);
+  }, [selectedRows]);
+
+  const handleButtonClick = () => {
+    
+    console.log('clicked');
+  };
+
+  const handleChange = useCallback((state: any) => {
+    setSelectedRows(state.selectedRows);
+  }, []);
+
+  const columns = useMemo(
+    () => [
+      {
+        name: "No. Control",
+        selector: (row: { noControl: string }) => row.noControl,
+        style: {
+          color: "rgba(0,0,0,.54)",
+        },
+      },
+      {
+        name: "Nombre",
+        selector: (row: { correo1: string; nombre: string }) => (
+          <>
+            {row.nombre}
+            <br />
+            <span className="text-tremor-label">{row.correo1}</span>
+          </>
+        ),
+        sortable: true,
+        style: {
+          color: "rgba(0,0,0,.54)",
+        },
+        width: "250px",
+      },
+      {
+        // TODO: agregaar a la columna expandible
+
+        name: "Carrera",
+        selector: (row: { carrera: string; plantel: string }) => (
+          <>
+            {row.carrera}
+            <br />
+            <span className="text-tremor-label">{row.plantel}</span>
+          </>
+        ),
+        sortable: true,
+        style: {
+          color: "rgba(0,0,0,.54)",
+        },
+        width: "250px",
+      },
+      {
+        name: "Estatus",
+
+        cell: (row: { estatus: string }) => (
+          <Badge size="xs" icon={IoHappyOutline}>
+            {row.estatus}
+          </Badge>
+        ),
+      },
+      {
+        name: "Fecha de Nacimiento",
+        selector: (row: { fechaNaciemiento: string }) => row.fechaNaciemiento,
+        sortable: true,
+        style: {
+          color: "rgba(0,0,0,.54)",
+        },
+      },
+      {
+        name: "Telefono",
+        selector: (row: { telefono: string }) => row.telefono,
+        style: {
+          color: "rgba(0,0,0,.54)",
+        },
+        width: "115px",
+      },
+      {
+        name: "Genero",
+        selector: (row: { genero: string }) => row.genero,
+        style: {
+          color: "rgba(0,0,0,.54)",
+        },
+      },
+      {
+        name: "Opciones",
+        cell: () => 
+        <div className="inline-flex items-center rounded-md shadow-sm">
+          <Button className='mr-1.5' color='yellow' variant='primary' size='xs' icon={IoCreateOutline} onClick={handleButtonClick}/>
+          <Button color='red' variant='primary' size='xs' icon={IoTrashOutline} onClick={handleButtonClick}/>
+        </div>,
+      },
+    ],
+    []
+  );
+
+  // ! FILTRA LOS DATOS DE LA TABLA "NO MODIFICAR"
 
   // Filtrado de pacientes
   const [records, setRecords] = useState(dataItems);
@@ -488,12 +519,7 @@ export function TableUsageExample() {
     const filteredData = dataItems.filter((item) => {
       return (
         item.noControl.toLowerCase().includes(value) ||
-        item.nombre.toLowerCase().includes(value) ||
-        item.carrera.toLowerCase().includes(value) ||
-        item.estatus.toLowerCase().includes(value) ||
-        item.fechaNaciemiento.toLowerCase().includes(value) ||
-        item.telefono.toLowerCase().includes(value) ||
-        item.genero.toLowerCase().includes(value)
+        item.nombre.toLowerCase().includes(value)
       );
     });
     setRecords(filteredData);
@@ -527,7 +553,7 @@ export function TableUsageExample() {
           selectAllRowsItem: true,
           selectAllRowsItemText: "Todos",
         }}
-        onSelectedRowsChange={(data) => console.log(data)}
+        onSelectedRowsChange={handleChange}
         highlightOnHover={true}
         pointerOnHover={true}
         expandableRows={true}

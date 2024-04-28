@@ -4,29 +4,18 @@ import { TableUsageExample } from '../../components/index'
 import { Button } from '@tremor/react';
 
 import { ModalPaciente } from '../../components/index';
-import { useState } from 'react';
 
 import { IoPersonAddOutline } from 'react-icons/io5';
-import { useModalStore } from '@/app/store';
+import { useModalStore } from '../../store/index';
 
 
 export default function pacientesPage() {
 
-    // const [isModalOpen, setIsModalOpen] = useState(false);
+    const { isModalOpen, openModal ,closeModal, clearSelectedPatient } = useModalStore();
 
-    // const openModal = () => {
-    //     setIsModalOpen(true);
-    // };
-
-    // const closeModal = () => {
-    //     setIsModalOpen(false);
-    // };
-
-    const { isModalOpen, closeModal } = useModalStore();
-
-    const openModal = () => {
-        // Aquí puedes pasar los datos del nuevo paciente si los tienes
-        useModalStore.getState().openModal({}); 
+    const handleOpenModal = (patientData: any) => {
+        openModal(patientData);
+        clearSelectedPatient();
     };
 
     
@@ -38,7 +27,7 @@ export default function pacientesPage() {
             </div>
 
             <div className='pt-3 flex justify-end'>
-                <Button size='sm' onClick={openModal} icon={IoPersonAddOutline}>
+                <Button size='sm' onClick={handleOpenModal} icon={IoPersonAddOutline}>
                     Nuevo paciente
                 </Button>
             </div>

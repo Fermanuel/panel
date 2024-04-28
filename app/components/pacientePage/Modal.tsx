@@ -9,18 +9,43 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
 
   const { selectedPatient } = useModalStore();
 
-  const [selectedValue, setSelectedValue] = useState(selectedPatient.genero);
-  const [selectedValueCivil, setSelectedValueCivil] = useState(selectedPatient.estadoCivil);
-  const [selectedValuePlantel, setSelectedValuePlantel] = useState(selectedPatient.plantel);
+  const [selectedValue, setSelectedValue] = useState(selectedPatient?.genero);
+  const [selectedValueCivil, setSelectedValueCivil] = useState(selectedPatient?.estadoCivil);
+  const [selectedValuePlantel, setSelectedValuePlantel] = useState(selectedPatient?.plantel);
+  const [selectedValueCarrera, setSelectedValueCarrera] = useState(selectedPatient?.carrera);
+  const [selectedValueSemestre, setSelectedValueSemestre] = useState(selectedPatient?.semestre);
+  const [selectedValueCorreoInstitucional, setSelectedValueCorreoInstitucional] = useState(selectedPatient?.correoInstitucional);
+  const [selectedValueTelefono, setSelectedValueTelefono] = useState(selectedPatient?.telefono);
+  const [selectedValueDireccion, setSelectedValueDireccion] = useState(selectedPatient?.direccion);
+  const [selectedValueFechaNacimiento, setSelectedValueFechaNacimiento] = useState(selectedPatient?.fechaNacimiento);
+  const [selectedValueNoControl, setSelectedValueNoControl] = useState(selectedPatient?.noControl);
+  const [selectedValueNombre, setSelectedValueNombre] = useState(selectedPatient?.nombre);
+  const [selectedValueApellidoPaterno, setSelectedValueApellidoPaterno] = useState(selectedPatient?.apellidoPaterno);
+  const [selectedValueApellidoMaterno, setSelectedValueApellidoMaterno] = useState(selectedPatient?.apellidoMaterno);
+  const [selectedValueCorreo1, setSelectedValueCorreo1] = useState(selectedPatient?.correo1);
 
-  // useEffect(() => {
-  //   if (selectedPatient) {
-  //     setSelectedValue(selectedPatient.genero);
-  //     setSelectedValueCivil(selectedPatient.estadoCivil);
-  //     setSelectedValuePlantel(selectedPatient.plantel);
-  //   }
-  // }, [selectedPatient]);
 
+  // ! NO ME DEJA CAMBIAR LOS VALORES DE LOS INPUTS
+  useEffect(() => {
+
+    if(selectedPatient) {
+      setSelectedValue(selectedPatient.genero);
+      setSelectedValueCivil(selectedPatient.estadoCivil);
+      setSelectedValuePlantel(selectedPatient.plantel);
+      setSelectedValueCarrera(selectedPatient.carrera);
+      setSelectedValueSemestre(selectedPatient.semestre);
+      setSelectedValueCorreoInstitucional(selectedPatient.correoInstitucional);
+      setSelectedValueTelefono(selectedPatient.telefono);
+      setSelectedValueDireccion(selectedPatient.direccion);
+      setSelectedValueFechaNacimiento(selectedPatient.fechaNacimiento);
+      setSelectedValueNoControl(selectedPatient.noControl);
+      setSelectedValueNombre(selectedPatient.nombre);
+      setSelectedValueApellidoPaterno(selectedPatient.apellidoPaterno);
+      setSelectedValueApellidoMaterno(selectedPatient.apellidoMaterno);
+      setSelectedValueCorreo1(selectedPatient.correo1);
+      
+    }
+  }, [selectedPatient]);
 
   // TODO: Implementar la logica para guardar los datos del paciente mediante le metodo POST
   
@@ -60,7 +85,8 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     placeholder="Nombre"
                     className="mt-2"
                     required
-                    value={selectedPatient?.nombre}
+                    value={selectedValueNombre}
+                    onValueChange={setSelectedValueNombre}
                   />
                 </div>
 
@@ -80,7 +106,8 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     placeholder="Apellido Paterno"
                     className="mt-2"
                     required
-                    value={selectedPatient?.apellidoPaterno}
+                    value={selectedValueApellidoPaterno}
+                    onValueChange={setSelectedValueApellidoPaterno}
                   />
                 </div>
 
@@ -94,11 +121,12 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                   </label>
 
                   <DatePicker  
-                  id="last-name"
-                  placeholder="Fecha de nacimiento"
-                  value={selectedPatient?.fechaNacimiento}
-                  enableYearNavigation = {true}
-                  displayFormat = "dd-MMMM-yyyy"
+                    id="last-name"
+                    placeholder="Fecha de nacimiento"
+                    enableYearNavigation = {true}
+                    displayFormat = "yyyy-MM-dd"
+                    value={selectedValueFechaNacimiento}
+                    onValueChange={setSelectedValueFechaNacimiento}
                   />
     
                 </div>
@@ -118,7 +146,8 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     autoComplete="last-name"
                     placeholder="Apellido Materno"
                     required
-                    value={selectedPatient?.apellidoMaterno}
+                    value={selectedValueApellidoMaterno}
+                    onValueChange={setSelectedValueApellidoMaterno}
                   />
                 </div>
 
@@ -138,7 +167,8 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     placeholder="Correo electronico"
                     className="mt-2"
                     required
-                    value={selectedPatient?.correo1}
+                    value={selectedValueCorreo1}
+                    onValueChange={setSelectedValueCorreo1}
                   />
                 </div>
 
@@ -150,10 +180,10 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     Carrera
                     <span className="text-red-500">*</span>
                   </label>
-                  <Select className='mt-2' required value={selectedPatient?.carrera}>
-                    <SelectItem value="1">Ing. Sistemas Computacionales</SelectItem>
-                    <SelectItem value="2">Ing. Informatica</SelectItem>
-                    <SelectItem value="3">Ing. Industrial</SelectItem>
+                  <Select className='mt-2' required value={selectedValueCarrera} onValueChange={setSelectedValueCarrera}>
+                    <SelectItem value="ing. en sistemas computacionales">Ing. Sistemas Computacionales</SelectItem>
+                    <SelectItem value="Ing. Informatica">Ing. Informatica</SelectItem>
+                    <SelectItem value="Ing. Industrial">Ing. Industrial</SelectItem>
                   </Select>
                 </div>
 
@@ -172,7 +202,8 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     placeholder="Telefono"
                     className="mt-2"
                     required
-                    value={selectedPatient?.telefono}
+                    value={selectedValueTelefono}
+                    onValueChange={setSelectedValueTelefono}
                   />
                 </div>
 
@@ -190,7 +221,8 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     autoComplete="street-address"
                     placeholder="Direccion"
                     className="mt-2"
-                    value={selectedPatient?.direccion}
+                    value={selectedValueDireccion}
+                    onValueChange={setSelectedValueDireccion}
                   />
                 </div>
 
@@ -202,7 +234,7 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     Genero
                     <span className="text-red-500">*</span>
                   </label>
-                  <Select className='mt-2' required onValueChange={setSelectedValue} value={selectedValue}>
+                  <Select className='mt-2' required onValueChange={setSelectedValue} value={selectedValue} >
                     <SelectItem value="Masculino">Masculino</SelectItem>
                     <SelectItem value="Femenino">Femenio</SelectItem>
                   </Select>
@@ -220,6 +252,8 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     <SelectItem value="Soltero">Soltero</SelectItem>
                     <SelectItem value="Casado">Casado</SelectItem>
                     <SelectItem value="Union Libre">Union Libre</SelectItem>
+                    <SelectItem value="Soltera">Soltera</SelectItem>
+                    <SelectItem value="Casada">Casada</SelectItem>
                   </Select>
                 </div>
 
@@ -239,7 +273,8 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     placeholder="numero de control"
                     className="mt-2"
                     required
-                    value={selectedPatient?.noControl}
+                    value={selectedValueNoControl}
+                    onValueChange={setSelectedValueNoControl}
                   />
                 </div>
 
@@ -259,7 +294,8 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     placeholder="numero de semestre"
                     className="mt-2"
                     required
-                    value={selectedPatient?.semestre}
+                    value={selectedValueSemestre}
+                    onValueChange={setSelectedValueSemestre}
                   />
                 </div>
 
@@ -292,7 +328,8 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     placeholder="Correo Institucional"
                     className="mt-2"
                     required
-                    value={selectedPatient?.correoInstitucional}
+                    value={selectedValueCorreoInstitucional}
+                    onValueChange={setSelectedValueCorreoInstitucional}
                   />
                 </div>
 

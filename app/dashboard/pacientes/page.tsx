@@ -6,17 +6,27 @@ import { Button } from '@tremor/react';
 import { ModalPaciente } from '../../components/index';
 import { useState } from 'react';
 
+import { IoPersonAddOutline } from 'react-icons/io5';
+import { useModalStore } from '@/app/store';
+
 
 export default function pacientesPage() {
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    // const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // const openModal = () => {
+    //     setIsModalOpen(true);
+    // };
+
+    // const closeModal = () => {
+    //     setIsModalOpen(false);
+    // };
+
+    const { isModalOpen, closeModal } = useModalStore();
 
     const openModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
+        // Aquí puedes pasar los datos del nuevo paciente si los tienes
+        useModalStore.getState().openModal({}); 
     };
 
     
@@ -28,15 +38,12 @@ export default function pacientesPage() {
             </div>
 
             <div className='pt-3 flex justify-end'>
-                <Button
-                    size='sm'
-                    onClick={openModal}
-                >
-                    Agregar nuevo paciente
+                <Button size='sm' onClick={openModal} icon={IoPersonAddOutline}>
+                    Nuevo paciente
                 </Button>
             </div>
 
-            <ModalPaciente isOpen={isModalOpen} onClose={closeModal} />
+            <ModalPaciente isOpen={isModalOpen} onClose={closeModal}/>
 
         </div>
     )

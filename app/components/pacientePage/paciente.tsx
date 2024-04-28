@@ -1,12 +1,13 @@
 
 
-import { IoHappyOutline, IoSearchOutline, IoTrashOutline, IoCreateOutline } from 'react-icons/io5';
+import { IoHappyOutline, IoSearchOutline, IoTrashOutline, IoCreateOutline} from 'react-icons/io5';
 
 import DataTable, { ExpanderComponentProps } from 'react-data-table-component';
 import { Card, Badge, List, ListItem, TextInput, Button } from '@tremor/react';
 
-import { useEffect, useState, useMemo, useCallback, SetStateAction } from 'react';
-import colors from 'tailwindcss/colors';
+import { useEffect, useState, useMemo, useCallback } from 'react';
+
+import { useModalStore } from '../../store/index';
 
 
 //  Internally, customStyles will deep merges your customStyles with the default styling.
@@ -381,8 +382,8 @@ const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
             </a>
           </ListItem>
           <ListItem>
-            <span>Correo Institucional:</span>
-            <span>{data.correoInstitucional}</span>
+            <span>Correo Personal:</span>
+            <span>{data.correo1}</span>
           </ListItem>
           <ListItem>
             <span>Género:</span>
@@ -406,18 +407,23 @@ const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
 
 export function TableUsageExample() {
 
-  // ! COLUMNA DE LA TABLA "NO MODIFICAR" SOLO SI ES 100% NECESARIO
+  const { openModal } = useModalStore();
 
+  // ! COLUMNA DE LA TABLA "NO MODIFICAR" SOLO SI ES 100% NECESARIO
   const [selectedRows, setSelectedRows] = useState([]);
 
   useEffect(() => {
     
-    console.log('state', selectedRows);
+    console.log(selectedRows);
   }, [selectedRows]);
 
-  const handleButtonClick = () => {
-    
-    console.log('clicked');
+  const handleEdit = (row: any) => {
+    console.log('editado');
+    openModal(row);
+  };
+
+  const handleDelete = () => {
+    console.log('eliminado');
   };
 
   const handleChange = useCallback((state: any) => {
@@ -435,11 +441,11 @@ export function TableUsageExample() {
       },
       {
         name: "Nombre",
-        selector: (row: { correo1: string; nombre: string }) => (
+        selector: (row: { correoInstitucional: string; nombre: string }) => (
           <>
             {row.nombre}
             <br />
-            <span className="text-tremor-label">{row.correo1}</span>
+            <span className="text-tremor-label">{row.correoInstitucional}</span>
           </>
         ),
         sortable: true,
@@ -475,20 +481,12 @@ export function TableUsageExample() {
         ),
       },
       {
-        name: "Fecha de Nacimiento",
+        name: "Nacimiento",
         selector: (row: { fechaNaciemiento: string }) => row.fechaNaciemiento,
         sortable: true,
         style: {
           color: "rgba(0,0,0,.54)",
         },
-      },
-      {
-        name: "Telefono",
-        selector: (row: { telefono: string }) => row.telefono,
-        style: {
-          color: "rgba(0,0,0,.54)",
-        },
-        width: "115px",
       },
       {
         name: "Genero",
@@ -499,10 +497,10 @@ export function TableUsageExample() {
       },
       {
         name: "Opciones",
-        cell: () => 
+        cell: (row: any) => 
         <div className="inline-flex items-center rounded-md shadow-sm">
-          <Button className='mr-1.5' color='yellow' variant='primary' size='xs' icon={IoCreateOutline} onClick={handleButtonClick}/>
-          <Button color='red' variant='primary' size='xs' icon={IoTrashOutline} onClick={handleButtonClick}/>
+          <Button className='mr-1.5' color='yellow' variant='primary' size='xs' icon={IoCreateOutline} onClick={() => handleEdit(row)}/>
+          <Button color='red' variant='primary' size='xs' icon={IoTrashOutline} onClick={handleDelete}/>
         </div>,
       },
     ],
@@ -526,6 +524,7 @@ export function TableUsageExample() {
   };
 
   return (
+
     <Card className="text-tremor-default">
       
       <div className="grid grid-cols-4 gap-3 pt-3">
@@ -563,4 +562,5 @@ export function TableUsageExample() {
       />
     </Card>
   );
+  
 }

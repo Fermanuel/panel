@@ -421,7 +421,7 @@ export function TableUsageExample() {
   
   // * FUNCIONES PARA EDITAR PACIENTE
   const handleEdit = (row: any) => {
-    if (selectedRows.length === 1 && selectedRows[0] === row) {
+    if (selectedRows.length > 0 && selectedRows[0] === row) {
       openModal(row);
     } else {
       console.log('Selecciona solo un paciente para editar');
@@ -431,7 +431,7 @@ export function TableUsageExample() {
   // * FUNCION PARA ELIMINAR PACIENTE
   const handleDelete = () => {
     if (selectedRows.length > 0) {
-      openModalBorrar(selectedRows);
+      openModalBorrar(selectedRows?.map((row: any) => row.noControl));
     } else {
       console.log('Selecciona al menos un paciente para eliminar');
     }

@@ -1,23 +1,24 @@
 'use client';
 
-import { TableUsageExample } from '../../components/index'
+import { ModalBorrar, TableUsageExample } from '../../components/index'
 import { Button } from '@tremor/react';
 
-import { ModalPaciente } from '../../components/index';
+import { ModalPaciente} from '../../components/index';
 
 import { IoPersonAddOutline } from 'react-icons/io5';
-import { useModalStore } from '../../store/index';
+import { useModalBorrar, useModalStore } from '../../store/index';
 
+// TODO: poder usar el modal para borrar pacientes
 
 export default function pacientesPage() {
 
     const { isModalOpen, openModal ,closeModal, clearSelectedPatient } = useModalStore();
+    const { isModalBorrarOpen, closeModalBorrar } = useModalBorrar();
 
     const handleOpenModal = () => {
         clearSelectedPatient();
         openModal({});
     };
-
     
     return (
         <div className="container mx-auto px-5">
@@ -33,6 +34,7 @@ export default function pacientesPage() {
             </div>
 
             <ModalPaciente isOpen={isModalOpen} onClose={closeModal}/>
+            <ModalBorrar isOpen={isModalBorrarOpen} onClose={closeModalBorrar}/>
 
         </div>
     )

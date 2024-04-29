@@ -13,5 +13,5 @@ export const useModalStore = create<ModalStore>((set) => ({
     selectedPatient: '',
     openModal: (patientData: any) => set({ isModalOpen: true, selectedPatient: patientData }),
     closeModal: () => set({ isModalOpen: false }),
-    clearSelectedPatient: () => set({ selectedPatient: null }),
+    clearSelectedPatient: () => set({ selectedPatient: null })
 }));

@@ -7,3 +7,4 @@ export { Calendario } from './citasPage/Calendario/Calendario';
 export { PkiCard } from './panelPage/PkiCard/PkiCard';
 export { TableUsageExample } from './pacientePage/paciente';
 export { ModalPaciente } from './pacientePage/Modal';
+export { ModalBorrar } from './pacientePage/ModalBorrar';

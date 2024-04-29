@@ -7,7 +7,7 @@ import { Card, Badge, List, ListItem, TextInput, Button } from '@tremor/react';
 
 import { useEffect, useState, useMemo, useCallback } from 'react';
 
-import { useModalStore } from '../../store/index';
+import { useModalStore, useModalBorrar } from '../../store/index';
 
 
 // * ESTILOS DE LA TABLA
@@ -411,30 +411,30 @@ const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
 export function TableUsageExample() {
 
   const { openModal } = useModalStore();
+  const { openModalBorrar } = useModalBorrar();
 
-  // * COLUMNA DE LA TABLA "NO MODIFICAR" SOLO SI ES 100% NECESARIO
   const [selectedRows, setSelectedRows] = useState([]);
 
   useEffect(() => {
     console.log(selectedRows);
   }, [selectedRows]);
-
-  // const handleEdit = (row: any) => {
-  //   console.log('editado');
-  //   openModal(row);
-  // };
-
+  
+  // * FUNCIONES PARA EDITAR PACIENTE
   const handleEdit = (row: any) => {
     if (selectedRows.length === 1 && selectedRows[0] === row) {
-      console.log('editado');
       openModal(row);
     } else {
-      console.log('Seleccione una sola fila para editar.');
+      console.log('Selecciona solo un paciente para editar');
     }
   };
 
+  // * FUNCION PARA ELIMINAR PACIENTE
   const handleDelete = () => {
-    console.log('eliminado');
+    if (selectedRows.length > 0) {
+      openModalBorrar(selectedRows);
+    } else {
+      console.log('Selecciona al menos un paciente para eliminar');
+    }
   };
 
   const handleChange = useCallback((state: any) => {
@@ -509,13 +509,13 @@ export function TableUsageExample() {
         name: "Opciones",
         cell: (row: any) => 
         <div className="inline-flex items-center rounded-md shadow-sm">
-          <Button className='mr-1.5' color='yellow' variant='primary' size='xs' icon={IoCreateOutline} onClick={() => handleEdit(row)}/> {/* onClick={() => handleEdit(row)} */}
+          <Button className='mr-1.5' color='yellow' variant='primary' size='xs' icon={IoCreateOutline} onClick={() => handleEdit(row)}/>
           <Button color='red' variant='primary' size='xs' icon={IoTrashOutline} onClick={handleDelete}/>
         </div>,
       },
     ],
     // ! EL MODAL SE HABRE SOLO SI SE SELECCIONA UNA SOLA FILA
-    [selectedRows, handleEdit, {/* AQUI AGREGAR EL MODAL DE ELIMIANR */}]
+    [selectedRows]
   );
 
   // * FILTRA LOS DATOS DE LA TABLA POR "NO. CONTROL" Y "NOMBRE"

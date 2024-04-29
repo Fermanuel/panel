@@ -7,6 +7,33 @@ import { useEffect, useState } from 'react';
 
 export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: () => void}) {
 
+  // TODO: Implementar la logica para guardar los datos del paciente mediante le metodo POST
+
+  // * SIRVE PARA SIMULAR EL ENVIO DE DATOS DEL PACIENTE
+  const [isSaving, setIsSaving] = useState(false);
+
+  useEffect(() => {
+    if (isSaving) {
+      // * Simula un retraso de 2 segundos para la solicitud POST.
+      const timer = setTimeout(() => {
+        setIsSaving(false);
+        onClose();
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isSaving]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSaving(true);
+
+    // Perform the POST request here
+    // ...
+
+    // onClose(); // Uncomment this line if you want to close the modal immediately after the POST request is sent
+  };
+
   const { selectedPatient } = useModalStore();
 
   const [selectedValue, setSelectedValue] = useState(selectedPatient?.genero);
@@ -25,7 +52,7 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
   const [selectedValueCorreo1, setSelectedValueCorreo1] = useState(selectedPatient?.correo1);
 
 
-  // ! NO ME DEJA CAMBIAR LOS VALORES DE LOS INPUTS
+  // * SIRVE PARA ACTUALIZAR LOS DATOS DEL PACIENTE EN EL MODAL
   useEffect(() => {
 
     if(selectedPatient) {
@@ -47,9 +74,6 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
     }
   }, [selectedPatient]);
 
-  // TODO: Implementar la logica para guardar los datos del paciente mediante le metodo POST
-  
-    
     return (
       <Dialog open={isOpen} onClose={onClose} static={true}>
 
@@ -65,7 +89,7 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
               completa los campos para registrar un nuevo paciente
             </p>
             
-            <form action="#" method="post" className="mt-10">
+            <form onSubmit={handleSubmit} method="post" className="mt-10">
               
               <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
                 
@@ -350,7 +374,7 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                 <Button
                   type="submit"
                   className="whitespace-nowrap rounded-tremor-default bg-tremor-brand px-4 py-2.5 text-tremor-default font-medium text-tremor-brand-inverted shadow-tremor-input hover:bg-tremor-brand-emphasis dark:bg-dark-tremor-brand dark:text-dark-tremor-brand-inverted dark:shadow-dark-tremor-input dark:hover:bg-dark-tremor-brand-emphasis"
-                  loading={false}
+                  loading={isSaving}
                   loadingText='Guardando...'
                 >
                   Guardar

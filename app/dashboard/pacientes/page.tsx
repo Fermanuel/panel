@@ -13,9 +13,9 @@ export default function pacientesPage() {
 
     const { isModalOpen, openModal ,closeModal, clearSelectedPatient } = useModalStore();
 
-    const handleOpenModal = (patientData: any) => {
-        openModal(patientData);
+    const handleOpenModal = () => {
         clearSelectedPatient();
+        openModal({});
     };
 
     

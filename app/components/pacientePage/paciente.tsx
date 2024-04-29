@@ -1,6 +1,6 @@
 
 
-import { IoHappyOutline, IoSearchOutline, IoTrashOutline, IoCreateOutline} from 'react-icons/io5';
+import { IoHappyOutline, IoSearchOutline, IoTrashOutline, IoCreateOutline, IoLogoWhatsapp } from 'react-icons/io5';
 
 import DataTable, { ExpanderComponentProps } from 'react-data-table-component';
 import { Card, Badge, List, ListItem, TextInput, Button } from '@tremor/react';
@@ -10,7 +10,7 @@ import { useEffect, useState, useMemo, useCallback } from 'react';
 import { useModalStore } from '../../store/index';
 
 
-//  Internally, customStyles will deep merges your customStyles with the default styling.
+// * ESTILOS DE LA TABLA
 const customStyles = {
 	headRow: {
 		style: {
@@ -345,19 +345,19 @@ const dataItems = [
 const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
 
 
-  // Estado para el número de teléfono de cada paciente
+  // * Estado para el número de teléfono de cada paciente
   const [telefono, setTelefono] = useState('');
 
   useEffect(() => {
 
-    // Establece el número de teléfono en el estado
-    setTelefono(data.telefono);
+    // * Establece el número de teléfono en el estado
+    setTelefono(telefono);
 
-    // Cambia el href del enlace
+    // * Cambia el href del enlace
     const whatsappLink = document.getElementById("whatsappLink") as HTMLAnchorElement;
     
     if (whatsappLink) {
-      whatsappLink.href = `https://api.whatsapp.com/send?phone=521${data.telefono}`;
+      whatsappLink.href = `https://api.whatsapp.com/send?phone=521${telefono}`;
     }
   }, []);
 
@@ -378,7 +378,10 @@ const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
               target="_blank"
               className="text-blue-500 hover:underline hover:text-blue-700 transition duration-300"
             >
-              <span>{data.telefono}</span>
+              <div className='flex items-center'>
+                <IoLogoWhatsapp className="mr-1.5" />
+                <span>{data.telefono}</span>
+              </div>
             </a>
           </ListItem>
           <ListItem>
@@ -409,17 +412,25 @@ export function TableUsageExample() {
 
   const { openModal } = useModalStore();
 
-  // ! COLUMNA DE LA TABLA "NO MODIFICAR" SOLO SI ES 100% NECESARIO
+  // * COLUMNA DE LA TABLA "NO MODIFICAR" SOLO SI ES 100% NECESARIO
   const [selectedRows, setSelectedRows] = useState([]);
 
   useEffect(() => {
-    
     console.log(selectedRows);
   }, [selectedRows]);
 
+  // const handleEdit = (row: any) => {
+  //   console.log('editado');
+  //   openModal(row);
+  // };
+
   const handleEdit = (row: any) => {
-    console.log('editado');
-    openModal(row);
+    if (selectedRows.length === 1 && selectedRows[0] === row) {
+      console.log('editado');
+      openModal(row);
+    } else {
+      console.log('Seleccione una sola fila para editar.');
+    }
   };
 
   const handleDelete = () => {
@@ -430,6 +441,7 @@ export function TableUsageExample() {
     setSelectedRows(state.selectedRows);
   }, []);
 
+  // TODO: AGREGAR COLUMNA DE NUMERO DE SESIONES QUE LLEVA CADA PACIENTE
   const columns = useMemo(
     () => [
       {
@@ -455,8 +467,6 @@ export function TableUsageExample() {
         width: "250px",
       },
       {
-        // TODO: agregaar a la columna expandible
-
         name: "Carrera",
         selector: (row: { carrera: string; plantel: string }) => (
           <>
@@ -475,7 +485,7 @@ export function TableUsageExample() {
         name: "Estatus",
 
         cell: (row: { estatus: string }) => (
-          <Badge size="xs" icon={IoHappyOutline}>
+          <Badge size="xs" icon={IoHappyOutline} color='emerald' tooltip='paciente activo'>
             {row.estatus}
           </Badge>
         ),
@@ -499,17 +509,17 @@ export function TableUsageExample() {
         name: "Opciones",
         cell: (row: any) => 
         <div className="inline-flex items-center rounded-md shadow-sm">
-          <Button className='mr-1.5' color='yellow' variant='primary' size='xs' icon={IoCreateOutline} onClick={() => handleEdit(row)}/>
+          <Button className='mr-1.5' color='yellow' variant='primary' size='xs' icon={IoCreateOutline} onClick={() => handleEdit(row)}/> {/* onClick={() => handleEdit(row)} */}
           <Button color='red' variant='primary' size='xs' icon={IoTrashOutline} onClick={handleDelete}/>
         </div>,
       },
     ],
-    []
+    // ! EL MODAL SE HABRE SOLO SI SE SELECCIONA UNA SOLA FILA
+    [selectedRows, handleEdit, {/* AQUI AGREGAR EL MODAL DE ELIMIANR */}]
   );
 
-  // ! FILTRA LOS DATOS DE LA TABLA "NO MODIFICAR"
+  // * FILTRA LOS DATOS DE LA TABLA POR "NO. CONTROL" Y "NOMBRE"
 
-  // Filtrado de pacientes
   const [records, setRecords] = useState(dataItems);
 
   const handleSearch = (e: any) => {
@@ -541,20 +551,25 @@ export function TableUsageExample() {
         title="Pacientes registrados"
         customStyles={customStyles}
         fixedHeader={true}
+
         columns={columns as any}
         data={records}
         selectableRows={true}
+
         pagination={true}
         paginationPerPage={10}
+
         paginationComponentOptions={{
           rowsPerPageText: "Filas por página",
           rangeSeparatorText: "de",
           selectAllRowsItem: true,
           selectAllRowsItemText: "Todos",
         }}
+
         onSelectedRowsChange={handleChange}
         highlightOnHover={true}
         pointerOnHover={true}
+
         expandableRows={true}
         expandableRowsComponent={ExpandedComponent}
         expandableRowsHideExpander={true}
@@ -562,5 +577,4 @@ export function TableUsageExample() {
       />
     </Card>
   );
-  
 }

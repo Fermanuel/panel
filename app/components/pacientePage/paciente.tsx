@@ -431,7 +431,7 @@ export function TableUsageExample() {
   // * FUNCION PARA ELIMINAR PACIENTE
   const handleDelete = () => {
     if (selectedRows.length > 0) {
-      openModalBorrar(selectedRows?.map((row: any) => row.noControl));
+      openModalBorrar(selectedRows?.map((row: any) => [row.noControl]));
     } else {
       console.log('Selecciona al menos un paciente para eliminar');
     }

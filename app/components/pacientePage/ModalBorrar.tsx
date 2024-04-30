@@ -15,17 +15,17 @@ export function ModalBorrar({ isOpen, onClose }: { isOpen: boolean, onClose: () 
       <DialogPanel title="Borrar paciente">
         <div>
             <div className="justify-start">
-                <div className="flex justify-start items-center">
+              <div className="flex justify-start items-center">
                 <IoAlertCircleOutline color="#ef4444" className="mr-2" size={'4rem'} />
                 <span className="text-tremor-title">
-                    ¿Estás seguro de que quieres borrar a este paciente?
+                  ¿Estás seguro de que quieres borrar a este paciente?
                 </span>
-                </div>
-                <List>
-                {selectedPatient.map((patient: any, index: any) => (
-                    <ListItem key={index}>{patient}</ListItem>
+              </div>
+              <List>
+                {Array.isArray(selectedPatient) && selectedPatient.map((patient: any, index: any) => (
+                  <ListItem key={index}>{patient}</ListItem>
                 ))}
-                </List>
+              </List>
             </div>
           <Divider />
           <div className="flex justify-end">

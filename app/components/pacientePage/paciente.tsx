@@ -351,13 +351,13 @@ const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
   useEffect(() => {
 
     // * Establece el número de teléfono en el estado
-    setTelefono(telefono);
+    setTelefono(data.telefono);
 
     // * Cambia el href del enlace
     const whatsappLink = document.getElementById("whatsappLink") as HTMLAnchorElement;
     
     if (whatsappLink) {
-      whatsappLink.href = `https://api.whatsapp.com/send?phone=521${telefono}`;
+      whatsappLink.href = `https://api.whatsapp.com/send?phone=521${data.telefono}`;
     }
   }, []);
 

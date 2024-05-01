@@ -63,35 +63,58 @@ const dataItems = [
     }
   },
   {
-    nombre: "Fernando Manuel",
-    apellidoPaterno: "Espinosa",
-    apellidoMaterno: "Inzunza",
-    cumple: "1998-13-02",
-    direccion: "Rosarito, Baja California, Colonia Centro, 22710",
-    telefono: "6642303206",
-    correoPer: "fer.espinosa@gmail.com",
+    nombre: "José Luis",
+    apellidoPaterno: "García",
+    apellidoMaterno: "Martínez",
+    cumple: "1997-08-21",
+    direccion: "Rosarito, Baja California, Colonia Reforma, 22710",
+    telefono: "6641875432",
+    correoPer: "jl.garcia@example.com",
     genero: "Masculino",
     estadoCivil: "Soltero",
     estatus: "Activo",
     schoolData: {
-      noControl: "21210355",
-      noSemestre: "7",
-      correoTec: "l21210356@tectijuana.edu.mx",
+      noControl: "21210356",
+      noSemestre: "9",
+      correoTec: "jl.garcia@tectijuana.edu.mx",
       plantel: "Unidad Tomas Aquino",
       carrera: {
-        carreraNombre: "Ing. en sistemas computacionales",
+        carreraNombre: "Ing. en sistemas computacionales"
       }
     }
   },
+  {
+    nombre: "Ana Karen",
+    apellidoPaterno: "Hernández",
+    apellidoMaterno: "Sánchez",
+    cumple: "1999-05-17",
+    direccion: "Rosarito, Baja California, Colonia del Valle, 22710",
+    telefono: "6643329988",
+    correoPer: "ana.hernandez@example.com",
+    genero: "Femenino",
+    estadoCivil: "Soltero",
+    estatus: "Activo",
+    schoolData: {
+      noControl: "21210357",
+      noSemestre: "5",
+      correoTec: "ana.hernandez@tectijuana.edu.mx",
+      plantel: "Unidad Tomas Aquino",
+      carrera: {
+        carreraNombre: "Ing. en sistemas computacionales"
+      }
+    }
+  }  
 ];
 
 
 const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
 
   // * Estado para el número de teléfono de cada paciente
-  const [telefono, setTelefono] = useState('');
+  let [telefono, setTelefono] = useState('');
 
   useEffect(() => {
+
+    telefono = data.telefono;
 
     // * Establece el número de teléfono en el estado
     setTelefono(telefono);
@@ -274,8 +297,10 @@ export function TableUsageExample() {
     const value = e.target.value.toLowerCase();
     const filteredData = dataItems.filter((item) => {
       return (
-        item.schoolData.noSemestre.toLowerCase().includes(value) ||
-        item.nombre.toLowerCase().includes(value)
+        item.schoolData.noControl.toLowerCase().includes(value) ||
+        item.nombre.toLowerCase().includes(value) ||
+        item.apellidoPaterno.toLowerCase().includes(value) ||
+        item.apellidoMaterno.toLowerCase().includes(value)
       );
     });
     setRecords(filteredData);
@@ -286,7 +311,7 @@ export function TableUsageExample() {
     <Card className="text-tremor-default">
       
       <div className="grid grid-cols-4 gap-3 pt-3">
-        <div className="w-full">
+        <div className="col-start-4">
           <TextInput
             icon={IoSearchOutline}
             placeholder="Buscar paciente"

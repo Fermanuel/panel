@@ -35,10 +35,10 @@ export function ModalBorrar({ isOpen, onClose }: { isOpen: boolean, onClose: () 
                 onClose();
               }}
             >
-              Sí
+              Confirmar
             </Button>
             <Button onClick={onClose} variant="secondary" color='yellow'>
-              No
+              Cancelar
             </Button>
           </div>
         </div>

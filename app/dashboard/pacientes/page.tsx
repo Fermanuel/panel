@@ -12,12 +12,10 @@ import { useModalBorrar, useModalStore } from '../../store/index';
 
 export default function pacientesPage() {
 
-    const { isModalOpen, openModal ,closeModal, clearSelectedPatient } = useModalStore();
+    const { isModalOpen, openModal ,closeModal } = useModalStore();
     const { isModalBorrarOpen, closeModalBorrar } = useModalBorrar();
 
     const handleOpenModal = () => {
-        
-        clearSelectedPatient();
         openModal({});
     };
     

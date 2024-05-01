@@ -40,310 +40,30 @@ const customStyles = {
 
 const dataItems = [
   {
-    noControl: "21210371",
-    nombre: "Fernando Manuel Espinosa Inzuza",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1998-09-01",
-    direccion: "Calle 1 #123",
-    telefono: "6646758501",
-    correo1: "manuelhola9@gmail.com",
-    correoInstitucional: "l21210371@tectijuana.edu.mx",
+    nombre: "Fernando Manuel",
+    apellidoPaterno: "Espinosa",
+    apellidoMaterno: "Inzunza",
+    cumple: "1998-13-02",
+    direccion: "Rosarito, Baja California, Colonia Centro, 22710",
+    telefono: "6642303206",
+    correoPer: "fer.espinosa@gmail.com",
     genero: "Masculino",
     estadoCivil: "Soltero",
-    semestre: "7",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210372",
-    nombre: "Ana Karen Pérez López",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1997-05-15",
-    direccion: "Calle 2 #456",
-    telefono: "0987654321",
-    correo1: "anakaren@gmail.com",
-    correoInstitucional: "l21210372@tectijuana.edu.mx",
-    genero: "Femenino",
-    estadoCivil: "Soltera",
-    semestre: "8",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210373",
-    nombre: "Juan Carlos García Ramírez",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1999-11-20",
-    direccion: "Calle 3 #789",
-    telefono: "1357924680",
-    correo1: "juancarlos@gmail.com",
-    correoInstitucional: "l21210373@tectijuana.edu.mx",
-    genero: "Masculino",
-    estadoCivil: "Soltero",
-    semestre: "6",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210374",
-    nombre: "María Fernanda Gómez Pérez",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1996-03-10",
-    direccion: "Calle 4 #1011",
-    telefono: "2468013579",
-    correo1: "mafer@gmail.com",
-    correoInstitucional: "l21210374@tectijuana.edu.mx",
-    genero: "Femenino",
-    estadoCivil: "Casada",
-    semestre: "9",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210375",
-    nombre: "Luis Alberto González Hernández",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1997-08-25",
-    direccion: "Calle 5 #1213",
-    telefono: "9876543210",
-    correo1: "luisalberto@gmail.com",
-    correoInstitucional: "l21210375@tectijuana.edu.mx",
-    genero: "Masculino",
-    estadoCivil: "Soltero",
-    semestre: "7",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210376",
-    nombre: "Karla Vanessa Torres García",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1998-12-05",
-    direccion: "Calle 6 #1415",
-    telefono: "3692581470",
-    correo1: "karla@gmail.com",
-    correoInstitucional: "l21210376@tectijuana.edu.mx",
-    genero: "Femenino",
-    estadoCivil: "Soltera",
-    semestre: "8",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210377",
-    nombre: "Javier Alejandro Martínez Sánchez",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1999-02-18",
-    direccion: "Calle 7 #1617",
-    telefono: "7418529630",
-    correo1: "javier@gmail.com",
-    correoInstitucional: "l21210377@tectijuana.edu.mx",
-    genero: "Masculino",
-    estadoCivil: "Soltero",
-    semestre: "6",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210378",
-    nombre: "Erika Guadalupe Hernández Rodríguez",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1997-07-30",
-    direccion: "Calle 8 #1819",
-    telefono: "8529637410",
-    correo1: "erika@gmail.com",
-    correoInstitucional: "l21210378@tectijuana.edu.mx",
-    genero: "Femenino",
-    estadoCivil: "Casada",
-    semestre: "9",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210379",
-    nombre: "Pedro José Ramírez González",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1998-04-22",
-    direccion: "Calle 9 #2021",
-    telefono: "9638527410",
-    correo1: "pedro@gmail.com",
-    correoInstitucional: "l21210379@tectijuana.edu.mx",
-    genero: "Masculino",
-    estadoCivil: "Soltero",
-    semestre: "7",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210380",
-    nombre: "Diana Laura Martínez Pérez",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1996-10-07",
-    direccion: "Calle 10 #2223",
-    telefono: "7410258963",
-    correo1: "diana@gmail.com",
-    correoInstitucional: "l21210380@tectijuana.edu.mx",
-    genero: "Femenino",
-    estadoCivil: "Soltera",
-    semestre: "8",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210381",
-    nombre: "Carlos Alberto López García",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1999-03-12",
-    direccion: "Calle 11 #2325",
-    telefono: "3691472580",
-    correo1: "carlos@gmail.com",
-    correoInstitucional: "l21210381@tectijuana.edu.mx",
-    genero: "Masculino",
-    estadoCivil: "Soltero",
-    semestre: "7",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210382",
-    nombre: "María José Rodríguez Pérez",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1998-07-05",
-    direccion: "Calle 12 #2527",
-    telefono: "8520147963",
-    correo1: "mariajose@gmail.com",
-    correoInstitucional: "l21210382@tectijuana.edu.mx",
-    genero: "Femenino",
-    estadoCivil: "Soltera",
-    semestre: "8",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210383",
-    nombre: "José Luis Pérez Hernández",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1997-11-20",
-    direccion: "Calle 13 #2729",
-    telefono: "1239876540",
-    correo1: "joseluis@gmail.com",
-    correoInstitucional: "l21210383@tectijuana.edu.mx",
-    genero: "Masculino",
-    estadoCivil: "Soltero",
-    semestre: "6",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210384",
-    nombre: "Laura Gabriela Gutiérrez Torres",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1999-09-15",
-    direccion: "Calle 14 #2931",
-    telefono: "9876543210",
-    correo1: "laura@gmail.com",
-    correoInstitucional: "l21210384@tectijuana.edu.mx",
-    genero: "Femenino",
-    estadoCivil: "Casada",
-    semestre: "9",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210385",
-    nombre: "Daniel Alejandro Martínez García",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1998-05-18",
-    direccion: "Calle 15 #3133",
-    telefono: "3692581470",
-    correo1: "daniel@gmail.com",
-    correoInstitucional: "l21210385@tectijuana.edu.mx",
-    genero: "Masculino",
-    estadoCivil: "Soltero",
-    semestre: "7",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210386",
-    nombre: "Ana Sofía Hernández Ramírez",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1997-12-20",
-    direccion: "Calle 16 #3335",
-    telefono: "7418529630",
-    correo1: "anasofia@gmail.com",
-    correoInstitucional: "l21210386@tectijuana.edu.mx",
-    genero: "Femenino",
-    estadoCivil: "Soltera",
-    semestre: "8",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210387",
-    nombre: "Roberto Carlos García Pérez",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1996-08-30",
-    direccion: "Calle 17 #3537",
-    telefono: "8529637410",
-    correo1: "roberto@gmail.com",
-    correoInstitucional: "l21210387@tectijuana.edu.mx",
-    genero: "Masculino",
-    estadoCivil: "Casado",
-    semestre: "9",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210388",
-    nombre: "María Fernanda Pérez López",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1999-02-28",
-    direccion: "Calle 18 #3739",
-    telefono: "9638527410",
-    correo1: "maferperez@gmail.com",
-    correoInstitucional: "l21210388@tectijuana.edu.mx",
-    genero: "Femenino",
-    estadoCivil: "Soltera",
-    semestre: "7",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210389",
-    nombre: "Miguel Ángel Torres Rodríguez",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1998-10-10",
-    direccion: "Calle 19 #3941",
-    telefono: "7410258963",
-    correo1: "miguel@gmail.com",
-    correoInstitucional: "l21210389@tectijuana.edu.mx",
-    genero: "Masculino",
-    estadoCivil: "Soltero",
-    semestre: "8",
-    plantel: "Unidad Tomas Aquino"
-  },
-  {
-    noControl: "21210390",
-    nombre: "Gabriela Martínez Sánchez",
-    carrera: "ing. en sistemas computacionales",
-    estatus: "active",
-    fechaNaciemiento: "1997-06-25",
-    direccion: "Calle 20 #4143",
-    telefono: "3691472580",
-    correo1: "gabriela@gmail.com",
-    correoInstitucional: "l21210390@tectijuana.edu.mx",
-    genero: "Femenino",
-    estadoCivil: "Soltera",
-    semestre: "9",
-    plantel: "Unidad Tomas Aquino"
+    estatus: "Activo",
+    schoolData: {
+      noControl: "21210355",
+      noSemestre: "7",
+      correoTec: "l21210356@tectijuana.edu.mx",
+      plantel: "Unidad Tomas Aquino",
+      carrera: {
+        carreraNombre: "Ing. en sistemas computacionales",
+      }
+    }
   }
 ];
 
 
 const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
-
 
   // * Estado para el número de teléfono de cada paciente
   const [telefono, setTelefono] = useState('');
@@ -351,13 +71,13 @@ const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
   useEffect(() => {
 
     // * Establece el número de teléfono en el estado
-    setTelefono(data.telefono);
+    setTelefono(telefono);
 
     // * Cambia el href del enlace
     const whatsappLink = document.getElementById("whatsappLink") as HTMLAnchorElement;
     
     if (whatsappLink) {
-      whatsappLink.href = `https://api.whatsapp.com/send?phone=521${data.telefono}`;
+      whatsappLink.href = `https://api.whatsapp.com/send?phone=521${telefono}`;
     }
   }, []);
 
@@ -386,7 +106,7 @@ const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
           </ListItem>
           <ListItem>
             <span>Correo Personal:</span>
-            <span>{data.correo1}</span>
+            <span>{data.correoPer}</span>
           </ListItem>
           <ListItem>
             <span>Género:</span>
@@ -398,7 +118,7 @@ const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
           </ListItem>
           <ListItem>
             <span>Semestre:</span>
-            <span>{data.semestre}</span>
+            <span>{data.schoolData.noSemestre}</span>
           </ListItem>
         </List>
       </Card>
@@ -410,7 +130,7 @@ const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
 
 export function TableUsageExample() {
 
-  const { openModal } = useModalStore();
+  const { openModal, clearSelectedPatient } = useModalStore();
   const { openModalBorrar } = useModalBorrar();
 
   const [selectedRows, setSelectedRows] = useState([]);
@@ -424,16 +144,21 @@ export function TableUsageExample() {
     if (selectedRows.length > 0 && selectedRows[0] === row) {
       openModal(row);
     } else {
-      console.log('Selecciona solo un paciente para editar');
+      alert('Selecciona solo un paciente para editar');
     }
   };
+
+  // * LIMPIA EL PACIENTE SELECCIONADO ( PARA EDITAR EN EL MODAL )
+  useEffect(() => {
+    clearSelectedPatient();
+  },[]);
 
   // * FUNCION PARA ELIMINAR PACIENTE
   const handleDelete = () => {
     if (selectedRows.length > 0) {
       openModalBorrar(selectedRows?.map((row: any) => [row.noControl]));
     } else {
-      console.log('Selecciona al menos un paciente para eliminar');
+      alert('Selecciona al menos un paciente para eliminar');
     }
   };
 
@@ -446,18 +171,18 @@ export function TableUsageExample() {
     () => [
       {
         name: "No. Control",
-        selector: (row: { noControl: string }) => row.noControl,
+        selector: (row: { schoolData: { noControl: string }, noControl: string}) => row.schoolData.noControl,
         style: {
           color: "rgba(0,0,0,.54)",
         },
       },
       {
         name: "Nombre",
-        selector: (row: { correoInstitucional: string; nombre: string }) => (
+        selector: (row: {schoolData: { correoTec: string; } ,correoTec: string; nombre: string, apellidoPaterno: string, apellidoMaterno: string }) => (
           <>
-            {row.nombre}
+            {row.nombre} {row.apellidoPaterno} {row.apellidoMaterno}
             <br />
-            <span className="text-tremor-label">{row.correoInstitucional}</span>
+            <span className="text-tremor-label">{row.schoolData.correoTec}</span>
           </>
         ),
         sortable: true,
@@ -468,11 +193,11 @@ export function TableUsageExample() {
       },
       {
         name: "Carrera",
-        selector: (row: { carrera: string; plantel: string }) => (
+        selector: (row: {schoolData: { carrera: { carreraNombre: string } ,plantel: string }}) => (
           <>
-            {row.carrera}
+            {row.schoolData.carrera.carreraNombre}
             <br />
-            <span className="text-tremor-label">{row.plantel}</span>
+            <span className="text-tremor-label">{row.schoolData.plantel}</span>
           </>
         ),
         sortable: true,
@@ -492,7 +217,7 @@ export function TableUsageExample() {
       },
       {
         name: "Nacimiento",
-        selector: (row: { fechaNaciemiento: string }) => row.fechaNaciemiento,
+        selector: (row: { cumple: Date }) => row.cumple,
         sortable: true,
         style: {
           color: "rgba(0,0,0,.54)",
@@ -526,7 +251,7 @@ export function TableUsageExample() {
     const value = e.target.value.toLowerCase();
     const filteredData = dataItems.filter((item) => {
       return (
-        item.noControl.toLowerCase().includes(value) ||
+        item.schoolData.noSemestre.toLowerCase().includes(value) ||
         item.nombre.toLowerCase().includes(value)
       );
     });

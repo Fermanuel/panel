@@ -16,6 +16,7 @@ export default function pacientesPage() {
     const { isModalBorrarOpen, closeModalBorrar } = useModalBorrar();
 
     const handleOpenModal = () => {
+        
         clearSelectedPatient();
         openModal({});
     };

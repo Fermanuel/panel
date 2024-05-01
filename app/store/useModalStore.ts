@@ -10,8 +10,8 @@ interface ModalStore {
 
 export const useModalStore = create<ModalStore>((set) => ({
     isModalOpen: false,
-    selectedPatient: '',
+    selectedPatient: null,
     openModal: (patientData: any) => set({ isModalOpen: true, selectedPatient: patientData }),
     closeModal: () => set({ isModalOpen: false }),
-    clearSelectedPatient: () => set({ selectedPatient: null })
+    clearSelectedPatient: () => set({ selectedPatient: null }),
 }));

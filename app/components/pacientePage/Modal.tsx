@@ -38,18 +38,18 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
 
   const [selectedValue, setSelectedValue] = useState(selectedPatient?.genero);
   const [selectedValueCivil, setSelectedValueCivil] = useState(selectedPatient?.estadoCivil);
-  const [selectedValuePlantel, setSelectedValuePlantel] = useState(selectedPatient?.plantel);
-  const [selectedValueCarrera, setSelectedValueCarrera] = useState(selectedPatient?.carrera);
-  const [selectedValueSemestre, setSelectedValueSemestre] = useState(selectedPatient?.semestre);
-  const [selectedValueCorreoInstitucional, setSelectedValueCorreoInstitucional] = useState(selectedPatient?.correoInstitucional);
+  const [selectedValuePlantel, setSelectedValuePlantel] = useState(selectedPatient?.schoolData?.plantel);
+  const [selectedValueCarrera, setSelectedValueCarrera] = useState(selectedPatient?.schoolData?.carrera?.carreraNombre);
+  const [selectedValueSemestre, setSelectedValueSemestre] = useState(selectedPatient?.schoolData?.noSemestre);
+  const [selectedValueCorreoInstitucional, setSelectedValueCorreoInstitucional] = useState(selectedPatient?.schoolData?.correoTec);
   const [selectedValueTelefono, setSelectedValueTelefono] = useState(selectedPatient?.telefono);
   const [selectedValueDireccion, setSelectedValueDireccion] = useState(selectedPatient?.direccion);
-  const [selectedValueFechaNacimiento, setSelectedValueFechaNacimiento] = useState(selectedPatient?.fechaNacimiento);
-  const [selectedValueNoControl, setSelectedValueNoControl] = useState(selectedPatient?.noControl);
+  const [selectedValueFechaNacimiento, setSelectedValueFechaNacimiento] = useState(selectedPatient?.cumple);
+  const [selectedValueNoControl, setSelectedValueNoControl] = useState(selectedPatient?.schoolData?.noControl);
   const [selectedValueNombre, setSelectedValueNombre] = useState(selectedPatient?.nombre);
   const [selectedValueApellidoPaterno, setSelectedValueApellidoPaterno] = useState(selectedPatient?.apellidoPaterno);
   const [selectedValueApellidoMaterno, setSelectedValueApellidoMaterno] = useState(selectedPatient?.apellidoMaterno);
-  const [selectedValueCorreo1, setSelectedValueCorreo1] = useState(selectedPatient?.correo1);
+  const [selectedValueCorreo1, setSelectedValueCorreo1] = useState(selectedPatient?.correoPer);
 
 
   // * SIRVE PARA ACTUALIZAR LOS DATOS DEL PACIENTE EN EL MODAL
@@ -58,18 +58,18 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
     if(selectedPatient) {
       setSelectedValue(selectedPatient.genero);
       setSelectedValueCivil(selectedPatient.estadoCivil);
-      setSelectedValuePlantel(selectedPatient.plantel);
-      setSelectedValueCarrera(selectedPatient.carrera);
+      setSelectedValuePlantel(selectedPatient.schoolData?.plantel);
+      setSelectedValueCarrera(selectedPatient?.schoolData?.carrera?.carreraNombre);
       setSelectedValueSemestre(selectedPatient.semestre);
-      setSelectedValueCorreoInstitucional(selectedPatient.correoInstitucional);
+      setSelectedValueCorreoInstitucional(selectedPatient.schoolData?.correoTec);
       setSelectedValueTelefono(selectedPatient.telefono);
       setSelectedValueDireccion(selectedPatient.direccion);
       setSelectedValueFechaNacimiento(selectedPatient.fechaNacimiento);
-      setSelectedValueNoControl(selectedPatient.noControl);
+      setSelectedValueNoControl(selectedPatient.schoolData?.noControl);
       setSelectedValueNombre(selectedPatient.nombre);
       setSelectedValueApellidoPaterno(selectedPatient.apellidoPaterno);
       setSelectedValueApellidoMaterno(selectedPatient.apellidoMaterno);
-      setSelectedValueCorreo1(selectedPatient.correo1);
+      setSelectedValueCorreo1(selectedPatient.correoPer);
       
     }
   }, [selectedPatient]);
@@ -205,7 +205,7 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     <span className="text-red-500">*</span>
                   </label>
                   <Select className='mt-2' required value={selectedValueCarrera} onValueChange={setSelectedValueCarrera}>
-                    <SelectItem value="ing. en sistemas computacionales">Ing. Sistemas Computacionales</SelectItem>
+                    <SelectItem value="Ing. en sistemas computacionales">Ing. Sistemas Computacionales</SelectItem>
                     <SelectItem value="Ing. Informatica">Ing. Informatica</SelectItem>
                     <SelectItem value="Ing. Industrial">Ing. Industrial</SelectItem>
                   </Select>

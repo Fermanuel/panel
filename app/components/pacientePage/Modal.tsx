@@ -1,6 +1,7 @@
 // ModalPaciente.jsx
 
 import { Dialog, DialogPanel, Button, Divider, TextInput, Select, SelectItem, DatePicker } from '@tremor/react';
+import { es } from 'date-fns/locale';
 
 import { useModalStore } from '../../store/index'
 import { useEffect, useState } from 'react';
@@ -60,7 +61,7 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
       setSelectedValueCivil(selectedPatient.estadoCivil);
       setSelectedValuePlantel(selectedPatient.schoolData?.plantel);
       setSelectedValueCarrera(selectedPatient?.schoolData?.carrera?.carreraNombre);
-      setSelectedValueSemestre(selectedPatient.semestre);
+      setSelectedValueSemestre(selectedPatient.schoolData?.noSemestre);
       setSelectedValueCorreoInstitucional(selectedPatient.schoolData?.correoTec);
       setSelectedValueTelefono(selectedPatient.telefono);
       setSelectedValueDireccion(selectedPatient.direccion);
@@ -151,6 +152,8 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     displayFormat = "yyyy-MM-dd"
                     value={selectedValueFechaNacimiento}
                     onValueChange={setSelectedValueFechaNacimiento}
+                    enableClear = {true}
+                    locale={es}
                   />
     
                 </div>

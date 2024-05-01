@@ -38,6 +38,8 @@ const customStyles = {
 	},
 };
 
+// TODO: HACER EL GET AL BACKEND PARA OBTENER LOS DATOS DE LOS PACIENTES DATOS DE LOS PACIENTES
+
 const dataItems = [
   {
     nombre: "Fernando Manuel",
@@ -59,7 +61,28 @@ const dataItems = [
         carreraNombre: "Ing. en sistemas computacionales",
       }
     }
-  }
+  },
+  {
+    nombre: "Fernando Manuel",
+    apellidoPaterno: "Espinosa",
+    apellidoMaterno: "Inzunza",
+    cumple: "1998-13-02",
+    direccion: "Rosarito, Baja California, Colonia Centro, 22710",
+    telefono: "6642303206",
+    correoPer: "fer.espinosa@gmail.com",
+    genero: "Masculino",
+    estadoCivil: "Soltero",
+    estatus: "Activo",
+    schoolData: {
+      noControl: "21210355",
+      noSemestre: "7",
+      correoTec: "l21210356@tectijuana.edu.mx",
+      plantel: "Unidad Tomas Aquino",
+      carrera: {
+        carreraNombre: "Ing. en sistemas computacionales",
+      }
+    }
+  },
 ];
 
 
@@ -156,7 +179,7 @@ export function TableUsageExample() {
   // * FUNCION PARA ELIMINAR PACIENTE
   const handleDelete = () => {
     if (selectedRows.length > 0) {
-      openModalBorrar(selectedRows?.map((row: any) => [row.noControl]));
+      openModalBorrar(selectedRows?.map((row: any) => [row.nombre, row.apellidoPaterno, row.apellidoMaterno].join(" ")));
     } else {
       alert('Selecciona al menos un paciente para eliminar');
     }

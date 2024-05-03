@@ -13,6 +13,7 @@ interface Props {
 
 
 export const SidebarItem = ({ path, icon, title, subtitle }: Props) => {
+  
   const currentPath = usePathname();
 
   return (

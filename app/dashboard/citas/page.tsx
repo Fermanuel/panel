@@ -8,7 +8,7 @@ export default function citasPage(){
   return (
     <div className="container mx-auto px-5">
       <div className="grid-cols-4 gap-3 pt-3 flex items-center justify-center">
-        <Card className="h-screen">
+        <Card className="w-screen h-screen">
           <Calendario/>
         </Card>
       </div>

@@ -7,7 +7,7 @@ import { Card, Badge, List, ListItem, TextInput, Button } from '@tremor/react';
 
 import { useEffect, useState, useMemo, useCallback } from 'react';
 
-import { useModalStore, useModalBorrar } from '../../store/index';
+import { useModalStore, useModalBorrar, useMostrarPacienteStore } from '../../store/index';
 
 
 // * ESTILOS DE LA TABLA
@@ -37,75 +37,6 @@ const customStyles = {
 		},
 	},
 };
-
-// TODO: HACER EL GET AL BACKEND PARA OBTENER LOS DATOS DE LOS PACIENTES DATOS DE LOS PACIENTES
-
-const dataItems = [
-  {
-    nombre: "Fernando Manuel",
-    apellidoPaterno: "Espinosa",
-    apellidoMaterno: "Inzunza",
-    cumple: "1998-13-02",
-    direccion: "Rosarito, Baja California, Colonia Centro, 22710",
-    telefono: "6642303206",
-    correoPer: "fer.espinosa@gmail.com",
-    genero: "Masculino",
-    estadoCivil: "Soltero",
-    estatus: "Activo",
-    schoolData: {
-      noControl: "21210355",
-      noSemestre: "7",
-      correoTec: "l21210356@tectijuana.edu.mx",
-      plantel: "Unidad Tomas Aquino",
-      carrera: {
-        carreraNombre: "Ing. en Sistemas Computacionales",
-      }
-    }
-  },
-  {
-    nombre: "José Luis",
-    apellidoPaterno: "García",
-    apellidoMaterno: "Martínez",
-    cumple: "1997-08-21",
-    direccion: "Rosarito, Baja California, Colonia Reforma, 22710",
-    telefono: "6641875432",
-    correoPer: "jl.garcia@example.com",
-    genero: "Masculino",
-    estadoCivil: "Soltero",
-    estatus: "Activo",
-    schoolData: {
-      noControl: "21210356",
-      noSemestre: "9",
-      correoTec: "jl.garcia@tectijuana.edu.mx",
-      plantel: "Unidad Tomas Aquino",
-      carrera: {
-        carreraNombre: "Ing. en Gestión Empresarial"
-      }
-    }
-  },
-  {
-    nombre: "Ana Karen",
-    apellidoPaterno: "Hernández",
-    apellidoMaterno: "Sánchez",
-    cumple: "1999-05-17",
-    direccion: "Rosarito, Baja California, Colonia del Valle, 22710",
-    telefono: "6643329988",
-    correoPer: "ana.hernandez@example.com",
-    genero: "Femenino",
-    estadoCivil: "Soltero",
-    estatus: "Activo",
-    schoolData: {
-      noControl: "21210357",
-      noSemestre: "5",
-      correoTec: "ana.hernandez@tectijuana.edu.mx",
-      plantel: "Unidad Tomas Aquino",
-      carrera: {
-        carreraNombre: "Ing. en Sistemas Computacionales"
-      }
-    }
-  }  
-];
-
 
 const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
 
@@ -176,6 +107,15 @@ const ExpandedComponent: React.FC<ExpanderComponentProps<any>> = ({ data }) => {
 
 export function TableUsageExample() {
 
+  // ! DATA DEL PACIENTE DEL BACKEND
+  const { fetchPacientes, pacientes } = useMostrarPacienteStore();
+  
+  // Llama a fetchPacientes cuando el componente se monta
+  useEffect(() => {
+    fetchPacientes();
+  }, []);
+
+
   const { openModal, clearSelectedPatient } = useModalStore();
   const { openModalBorrar } = useModalBorrar();
 
@@ -221,6 +161,7 @@ export function TableUsageExample() {
         style: {
           color: "rgba(0,0,0,.54)",
         },
+        width: "120px",
       },
       {
         name: "Nombre",
@@ -235,7 +176,7 @@ export function TableUsageExample() {
         style: {
           color: "rgba(0,0,0,.54)",
         },
-        width: "250px",
+        width: "300px",
       },
       {
         name: "Carrera",
@@ -260,10 +201,16 @@ export function TableUsageExample() {
             {row.estatus}
           </Badge>
         ),
+        width: "100px",
       },
       {
         name: "Nacimiento",
-        selector: (row: { cumple: Date }) => row.cumple,
+        selector: (row: { cumple: Date }) => {
+          const date = new Date(row.cumple);
+          const month = date.toLocaleString('default', { month: 'long' });
+          const formattedDate = `${month} ${date.getDate()}, ${date.getFullYear()}`;
+          return formattedDate;
+        },
         sortable: true,
         style: {
           color: "rgba(0,0,0,.54)",
@@ -291,11 +238,11 @@ export function TableUsageExample() {
 
   // * FILTRA LOS DATOS DE LA TABLA POR "NO. CONTROL" Y "NOMBRE"
 
-  const [records, setRecords] = useState(dataItems);
+  const [records, setRecords] = useState(pacientes);
 
   const handleSearch = (e: any) => {
     const value = e.target.value.toLowerCase();
-    const filteredData = dataItems.filter((item) => {
+    const filteredData = pacientes.filter((item) => {
       return (
         item.schoolData.noControl.toLowerCase().includes(value) ||
         item.nombre.toLowerCase().includes(value) ||

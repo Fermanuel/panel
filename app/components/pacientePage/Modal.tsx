@@ -190,11 +190,12 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     id="last-name"
                     placeholder="Fecha de nacimiento"
                     enableYearNavigation = {true}
-                    displayFormat = "yyyy-MM-dd"
+                    displayFormat = "dd / MMMM / yyyy"
                     value={selectedValueFechaNacimiento}
                     onValueChange={setSelectedValueFechaNacimiento}
                     enableClear = {true}
                     locale={es}
+                    
                   />
     
                 </div>

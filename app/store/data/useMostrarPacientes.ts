@@ -27,27 +27,26 @@ interface Paciente {
 }
 
 interface PacienteStore {
-  paciente: Paciente | null;
-  createPaciente: (pacienteData: Paciente) => Promise<void>;
+  pacientes: Paciente[];
+  fetchPacientes: () => Promise<void>;
 }
 
-export const usePacienteStore = create<PacienteStore>((set) => ({
-  paciente: null,
-  createPaciente: async (pacienteData: Paciente) => {
+export const useMostrarPacienteStore = create<PacienteStore>((set) => ({
+  pacientes: [],
+  fetchPacientes: async () => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/pacientes`, {
-        method: 'POST',
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           // 'Authorization': 'Bearer tu_token' // si necesitas autenticación
         },
-        body: JSON.stringify(pacienteData)
       });
       if (!response.ok) {
         throw new Error('Hubo un problema al hacer la solicitud: ' + response.status);
       }
       const data = await response.json();
-      set({ paciente: data });
+      set({ pacientes: data });
     } catch (error) {
       console.error('Error:', error);
     }

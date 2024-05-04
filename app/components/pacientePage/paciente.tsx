@@ -58,7 +58,7 @@ const dataItems = [
       correoTec: "l21210356@tectijuana.edu.mx",
       plantel: "Unidad Tomas Aquino",
       carrera: {
-        carreraNombre: "Ing. en sistemas computacionales",
+        carreraNombre: "Ing. en Sistemas Computacionales",
       }
     }
   },
@@ -79,7 +79,7 @@ const dataItems = [
       correoTec: "jl.garcia@tectijuana.edu.mx",
       plantel: "Unidad Tomas Aquino",
       carrera: {
-        carreraNombre: "Ing. en sistemas computacionales"
+        carreraNombre: "Ing. en Gestión Empresarial"
       }
     }
   },
@@ -100,7 +100,7 @@ const dataItems = [
       correoTec: "ana.hernandez@tectijuana.edu.mx",
       plantel: "Unidad Tomas Aquino",
       carrera: {
-        carreraNombre: "Ing. en sistemas computacionales"
+        carreraNombre: "Ing. en Sistemas Computacionales"
       }
     }
   }  

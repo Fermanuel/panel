@@ -3,10 +3,21 @@
 import { Dialog, DialogPanel, Button, Divider, TextInput, Select, SelectItem, DatePicker } from '@tremor/react';
 import { es } from 'date-fns/locale';
 
-import { useModalStore } from '../../store/index'
+import { useModalStore, useDataCarrerasTec, usePacienteStore } from '../../store/index'
 import { useEffect, useState } from 'react';
 
 export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: () => void}) {
+
+  // ! data para crear paciente
+  const { createPaciente } = usePacienteStore();
+
+  // ! data de carreras tec
+  const { data, fetchData } = useDataCarrerasTec();
+
+  useEffect(() => {
+    fetchData(); // Realizar la solicitud Fetch al cargar el componente
+  }, []); // Solo se ejecuta una vez
+
 
   // TODO: Implementar la logica para guardar los datos del paciente mediante le metodo POST
 
@@ -18,21 +29,51 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
       // * Simula un retraso de 2 segundos para la solicitud POST.
       const timer = setTimeout(() => {
         setIsSaving(false);
-        onClose();
+
       }, 2000);
 
       return () => clearTimeout(timer);
     }
   }, [isSaving]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);
 
     // Perform the POST request here
-    // ...
+    try {
 
-    // onClose(); // Uncomment this line if you want to close the modal immediately after the POST request is sent
+      const pacienteData = {
+        genero: selectedValue,
+        estadoCivil: selectedValueCivil,
+        schoolData: {
+          plantel: selectedValuePlantel,
+          carrera: {
+            nombre: selectedValueCarrera,
+            nomenclatura: data.find((carrera) => carrera.nombre === selectedValueCarrera)!.nomenclatura
+          },
+          noSemestre: selectedValueSemestre,
+          correoTec: selectedValueCorreoInstitucional,
+          noControl: selectedValueNoControl
+        },
+        telefono: selectedValueTelefono,
+        direccion: selectedValueDireccion,
+        cumple: selectedValueFechaNacimiento,
+        nombre: selectedValueNombre,
+        apellidoPaterno: selectedValueApellidoPaterno,
+        apellidoMaterno: selectedValueApellidoMaterno,
+        correoPer: selectedValueCorreo1
+      };
+
+      await createPaciente(pacienteData); // Aquí va el objeto con los datos del paciente
+      setIsSaving(false);
+      onClose();
+    }
+    catch (error) {
+      console.error('Error:', error);
+    }
+
+    //onClose(); // Uncomment this line if you want to close the modal immediately after the POST request is sent
   };
 
   const { selectedPatient } = useModalStore();
@@ -207,10 +248,10 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     Carrera
                     <span className="text-red-500">*</span>
                   </label>
-                  <Select className='mt-2' required value={selectedValueCarrera} onValueChange={setSelectedValueCarrera}>
-                    <SelectItem value="Ing. en sistemas computacionales">Ing. Sistemas Computacionales</SelectItem>
-                    <SelectItem value="Ing. Informatica">Ing. Informatica</SelectItem>
-                    <SelectItem value="Ing. Industrial">Ing. Industrial</SelectItem>
+                  <Select className='mt-2' required value={selectedValueCarrera} onValueChange={ setSelectedValueCarrera}>
+                  {data.map(option => (
+                    <SelectItem key={option.id} value={option.nombre}>{option.nomenclatura} - {option.nombre}</SelectItem>
+                  ))}
                   </Select>
                 </div>
 

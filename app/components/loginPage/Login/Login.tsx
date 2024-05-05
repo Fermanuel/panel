@@ -1,5 +1,4 @@
 import { useRouter } from "next/navigation";
-import { IoLogoGoogle } from "react-icons/io5";
 import { signIn } from "next-auth/react";
 import { Card, Divider, TextInput } from "@tremor/react";
 import { useState } from "react";
@@ -114,7 +113,7 @@ export const Login = () => {
       </Card>
 
       {errors.length > 0 && (
-        <div className="fixed inset-x-0 bottom-14 z-50 mx-auto max-w-md">
+        <div className="fixed inset-x-0 bottom-14 z-50 mx-auto max-w-md pt-3">
           <div
             className="p-4 text-sm text-red-700 bg-red-100 rounded-lg"
             role="alert"

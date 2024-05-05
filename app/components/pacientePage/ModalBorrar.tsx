@@ -1,12 +1,39 @@
 import { Dialog, DialogPanel, Button, List, ListItem, Divider } from '@tremor/react';
-import { useModalBorrar } from '../../store/index';
+import { useModalBorrar, useDeletePacienteStore } from '../../store/index';
 
 import { IoAlertCircleOutline } from 'react-icons/io5';
+import { useEffect, useState } from 'react';
 
 // TODO: poder usar el modal para borrar pacientes y darle un mejor diseño
 
 export function ModalBorrar({ isOpen, onClose }: { isOpen: boolean, onClose: () => void}) {
-  const { selectedPatient, clearSelectedPatient } = useModalBorrar();
+  
+  const { patientid, selectedPatient , clearSelectedPatient } = useModalBorrar();
+  const { deletePaciente } = useDeletePacienteStore();
+
+  // * SIRVE PARA SIMULAR EL ENVIO DE DATOS DEL PACIENTE
+  const [isSaving, setIsSaving] = useState(false);
+
+  useEffect(() => {
+    if (isSaving) {
+      // * Simula un retraso de 2 segundos para la solicitud DELETE.
+      const timer = setTimeout(() => {
+        setIsSaving(false);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isSaving]);
+
+  const handleDeleteClick = async () => {
+
+    // * AQUÍ DEBERÍAS LLAMAR A LA FUNCIÓN DELETEPACIENTE DEL STORE
+    await deletePaciente(patientid); // Asegúrate de que selectedPatient tiene un campo id
+    setIsSaving(true);
+    clearSelectedPatient();
+    onClose();
+  };
+
 
   return (
     // TODO: cambiar el diseño del modal para que se vea mejor por un lista de pacientes y no solo un paciente
@@ -31,9 +58,10 @@ export function ModalBorrar({ isOpen, onClose }: { isOpen: boolean, onClose: () 
           <div className="flex justify-end">
             <Button className="mr-2" variant="primary" color='red'
               onClick={() => {
-                clearSelectedPatient();
-                onClose();
+                handleDeleteClick();
               }}
+              loading={isSaving}
+              loadingText='Borrando...'
             >
               Confirmar
             </Button>

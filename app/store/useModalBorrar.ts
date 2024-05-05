@@ -3,7 +3,8 @@ import { create } from 'zustand';
 interface ModalBorrarStore {
     isModalBorrarOpen: boolean;
     selectedPatient: any;
-    openModalBorrar: (patientData: any) => void;
+    patientid: any;
+    openModalBorrar: (patientData: any, pacienteid: any) => void;
     closeModalBorrar: () => void;
     clearSelectedPatient: () => void;
 }
@@ -11,7 +12,8 @@ interface ModalBorrarStore {
 export const useModalBorrar = create<ModalBorrarStore>((set) => ({
     isModalBorrarOpen: false,
     selectedPatient: '',
-    openModalBorrar: (patientData: any) => set({ isModalBorrarOpen: true, selectedPatient: patientData }),
+    patientid: '',
+    openModalBorrar: (patientData: any, pacienteid: any) => set({ isModalBorrarOpen: true, selectedPatient: patientData, patientid: pacienteid}),
     closeModalBorrar: () => set({ isModalBorrarOpen: false }),
     clearSelectedPatient: () => set({ selectedPatient: null })
 }));

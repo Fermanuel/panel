@@ -81,7 +81,7 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
   const [selectedValue, setSelectedValue] = useState(selectedPatient?.genero);
   const [selectedValueCivil, setSelectedValueCivil] = useState(selectedPatient?.estadoCivil);
   const [selectedValuePlantel, setSelectedValuePlantel] = useState(selectedPatient?.schoolData?.plantel);
-  const [selectedValueCarrera, setSelectedValueCarrera] = useState(selectedPatient?.schoolData?.carrera?.carreraNombre);
+  const [selectedValueCarrera, setSelectedValueCarrera] = useState(selectedPatient?.schoolData?.carrera?.nombre);
   const [selectedValueSemestre, setSelectedValueSemestre] = useState(selectedPatient?.schoolData?.noSemestre);
   const [selectedValueCorreoInstitucional, setSelectedValueCorreoInstitucional] = useState(selectedPatient?.schoolData?.correoTec);
   const [selectedValueTelefono, setSelectedValueTelefono] = useState(selectedPatient?.telefono);
@@ -101,7 +101,7 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
       setSelectedValue(selectedPatient.genero);
       setSelectedValueCivil(selectedPatient.estadoCivil);
       setSelectedValuePlantel(selectedPatient.schoolData?.plantel);
-      setSelectedValueCarrera(selectedPatient?.schoolData?.carrera?.carreraNombre);
+      setSelectedValueCarrera(selectedPatient?.schoolData?.carrera?.nombre);
       setSelectedValueSemestre(selectedPatient.schoolData?.noSemestre);
       setSelectedValueCorreoInstitucional(selectedPatient.schoolData?.correoTec);
       setSelectedValueTelefono(selectedPatient.telefono);
@@ -112,7 +112,6 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
       setSelectedValueApellidoPaterno(selectedPatient.apellidoPaterno);
       setSelectedValueApellidoMaterno(selectedPatient.apellidoMaterno);
       setSelectedValueCorreo1(selectedPatient.correoPer);
-      
     }
   }, [selectedPatient]);
 
@@ -272,7 +271,7 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     className="mt-2"
                     required
                     value={selectedValueTelefono}
-                    onValueChange={setSelectedValueTelefono}
+                    onValueChange={value => setSelectedValueTelefono(value.slice(0, 10))}
                   />
                 </div>
 
@@ -319,10 +318,14 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                   </label>
                   <Select className='mt-2' required onValueChange={setSelectedValueCivil} value={selectedValueCivil}>
                     <SelectItem value="Soltero">Soltero</SelectItem>
-                    <SelectItem value="Casado">Casado</SelectItem>
-                    <SelectItem value="Union Libre">Union Libre</SelectItem>
                     <SelectItem value="Soltera">Soltera</SelectItem>
+                    <SelectItem value="Casado">Casado</SelectItem>
                     <SelectItem value="Casada">Casada</SelectItem>
+                    <SelectItem value="Union Libre">Union Libre</SelectItem>
+                    <SelectItem value="Divorciado">Divorciado</SelectItem>
+                    <SelectItem value="Divorciada">Divorciada</SelectItem>
+                    <SelectItem value="Viudo">Viudo</SelectItem>
+                    <SelectItem value="Viuda">Viuda</SelectItem>
                   </Select>
                 </div>
 
@@ -343,7 +346,7 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     className="mt-2"
                     required
                     value={selectedValueNoControl}
-                    onValueChange={setSelectedValueNoControl}
+                    onValueChange={value => setSelectedValueNoControl(value.slice(0, 8))} // Limita el numero de caracteres a 8
                   />
                 </div>
 
@@ -364,7 +367,7 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     className="mt-2"
                     required
                     value={selectedValueSemestre}
-                    onValueChange={setSelectedValueSemestre}
+                    onValueChange={value => setSelectedValueSemestre(value.slice(0, 2))}
                   />
                 </div>
 

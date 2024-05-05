@@ -3,7 +3,7 @@ import { create } from 'zustand';
 interface ModalStore {
     isModalOpen: boolean;
     selectedPatient: any;
-    openModal: (patientData: any) => void;
+    openModal: (patientData: string) => void;
     closeModal: () => void;
     clearSelectedPatient: () => void;
 }
@@ -11,7 +11,7 @@ interface ModalStore {
 export const useModalStore = create<ModalStore>((set) => ({
     isModalOpen: false,
     selectedPatient: null,
-    openModal: (patientData: any) => set({ isModalOpen: true, selectedPatient: patientData }),
+    openModal: (patientData: string) => set({ isModalOpen: true, selectedPatient: patientData }),
     closeModal: () => set({ isModalOpen: false }),
     clearSelectedPatient: () => set({ selectedPatient: null }),
 }));

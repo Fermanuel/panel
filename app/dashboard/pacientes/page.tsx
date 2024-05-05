@@ -18,7 +18,6 @@ export default function pacientesPage() {
     const handleOpenModal = () => {
         openModal({});
     };
-    
     return (
         <div className="container mx-auto px-5">
 

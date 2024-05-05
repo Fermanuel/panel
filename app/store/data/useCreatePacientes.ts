@@ -32,6 +32,7 @@ interface PacienteStore {
 }
 
 export const usePacienteStore = create<PacienteStore>((set) => ({
+
   paciente: null,
   createPaciente: async (pacienteData: Paciente) => {
     try {
@@ -44,12 +45,13 @@ export const usePacienteStore = create<PacienteStore>((set) => ({
         body: JSON.stringify(pacienteData)
       });
       if (!response.ok) {
-        throw new Error('Hubo un problema al hacer la solicitud: ' + response.status);
+        const errorData = await response.json();
+        throw new Error('Intente de nuevo: ' + response.status + ' - ' + errorData.message);
       }
       const data = await response.json();
       set({ paciente: data });
     } catch (error) {
-      console.error('Error:', error);
+      alert(`Error al crear paciente: ${error}`);
     }
   },
 }));

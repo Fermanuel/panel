@@ -9,7 +9,6 @@ import { useEffect, useState, useMemo, useCallback } from 'react';
 
 import { useModalStore, useModalBorrar, useMostrarPacienteStore } from '../../store/index';
 
-
 // * ESTILOS DE LA TABLA
 const customStyles = {
 	headRow: {
@@ -115,11 +114,10 @@ export function TableUsageExample() {
     fetchPacientes();
   }, []);
 
-
   const { openModal, clearSelectedPatient } = useModalStore();
   const { openModalBorrar } = useModalBorrar();
 
-  const [selectedRows, setSelectedRows] = useState([]);
+  const [selectedRows, setSelectedRows] = useState<string[]>([]);
 
   useEffect(() => {
     console.log(selectedRows);
@@ -142,7 +140,9 @@ export function TableUsageExample() {
   // * FUNCION PARA ELIMINAR PACIENTE
   const handleDelete = () => {
     if (selectedRows.length > 0) {
-      openModalBorrar(selectedRows?.map((row: any) => [row.nombre, row.apellidoPaterno, row.apellidoMaterno].join(" ")));
+      const id = selectedRows.map((row: any) => row.id);
+      const nombres = selectedRows.map((row: any) => [row.nombre, row.apellidoPaterno, row.apellidoMaterno].join(" "));
+      openModalBorrar(nombres, id);
     } else {
       alert('Selecciona al menos un paciente para eliminar');
     }
@@ -180,9 +180,9 @@ export function TableUsageExample() {
       },
       {
         name: "Carrera",
-        selector: (row: {schoolData: { carrera: { carreraNombre: string } ,plantel: string }}) => (
+        selector: (row: {schoolData: { carrera: { nombre: string } ,plantel: string }}) => (
           <>
-            {row.schoolData.carrera.carreraNombre}
+            {row.schoolData.carrera.nombre}
             <br />
             <span className="text-tremor-label">{row.schoolData.plantel}</span>
           </>

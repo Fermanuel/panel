@@ -126,7 +126,8 @@ export function TableUsageExample() {
   // * FUNCIONES PARA EDITAR PACIENTE
   const handleEdit = (row: any) => {
     if (selectedRows.length > 0 && selectedRows[0] === row) {
-      openModal(row);
+      const {id, ...rest} = row;
+      openModal(rest, id);
     } else {
       alert('Selecciona solo un paciente para editar');
     }

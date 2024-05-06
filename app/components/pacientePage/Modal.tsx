@@ -3,13 +3,18 @@
 import { Dialog, DialogPanel, Button, Divider, TextInput, Select, SelectItem, DatePicker } from '@tremor/react';
 import { es } from 'date-fns/locale';
 
-import { useModalStore, useDataCarrerasTec, usePacienteStore } from '../../store/index'
+import { useModalStore, useDataCarrerasTec, usePacienteStore, useUpdatePacienteStore } from '../../store/index'
 import { useEffect, useState } from 'react';
 
 export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: () => void}) {
 
+  // ! data de paciente para editar
+  const { selectedPatient, PatientId } = useModalStore();
+  const { updatePaciente } = useUpdatePacienteStore();
+
   // ! data para crear paciente
   const { createPaciente } = usePacienteStore();
+
 
   // ! data de carreras tec
   const { data, fetchData } = useDataCarrerasTec();
@@ -65,18 +70,21 @@ export function ModalPaciente({ isOpen, onClose }: { isOpen: boolean, onClose: (
         correoPer: selectedValueCorreo1
       };
 
-      await createPaciente(pacienteData); // Aquí va el objeto con los datos del paciente
+      if (PatientId) {
+        await updatePaciente(PatientId, pacienteData); // Aquí va el id del paciente y el objeto con los datos del paciente
+      } else {
+        // Si no hay id, es porque es un nuevo paciente
+        await createPaciente(pacienteData);
+      }
+
       setIsSaving(false);
-      onClose();
+
     }
     catch (error) {
       console.error('Error:', error);
     }
-
-    //onClose(); // Uncomment this line if you want to close the modal immediately after the POST request is sent
+    onClose();
   };
-
-  const { selectedPatient } = useModalStore();
 
   const [selectedValue, setSelectedValue] = useState(selectedPatient?.genero);
   const [selectedValueCivil, setSelectedValueCivil] = useState(selectedPatient?.estadoCivil);

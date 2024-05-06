@@ -14,6 +14,9 @@ interface SchoolData {
 }
 
 interface Paciente {
+
+    id: string;
+
     // datos del paciente para editar
     nombre: string;
     apellidoPaterno: string;
@@ -36,7 +39,7 @@ export const useUpdatePacienteStore = create<PacienteStore>((set) => ({
     paciente: null,
     updatePaciente: async (id, data) => {
         try {
-            const response = await fetch(`http://localhost:3002/api/pacientes/${id}`, {
+            const response = await fetch(`http://localhost:3001/api/pacientes/${id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
